@@ -1,0 +1,116 @@
+{
+  "$schema": "https://developer.microsoft.com/json-schemas/fabric/item/report/definition/visualContainer/2.9.0/schema.json",
+  "name": "991c0e41f5c1c9e092e7",
+  "position": {
+    "x": 10.249110320284696,
+    "y": 20.498220640569393,
+    "z": 0,
+    "height": 279.0035587188612,
+    "width": 1250.3914590747331,
+    "tabOrder": 0
+  },
+  "visual": {
+    "visualType": "lineChart",
+    "query": {
+      "queryState": {
+        "Category": {
+          "projections": [
+            {
+              "field": {
+                "Column": {
+                  "Expression": {
+                    "SourceRef": {
+                      "Entity": "Date"
+                    }
+                  },
+                  "Property": "Month"
+                }
+              },
+              "queryRef": "Date.Month",
+              "nativeQueryRef": "Month",
+              "active": true
+            }
+          ]
+        },
+        "Y": {
+          "projections": [
+            {
+              "field": {
+                "Measure": {
+                  "Expression": {
+                    "SourceRef": {
+                      "Entity": "Fact"
+                    }
+                  },
+                  "Property": "# of Customers"
+                }
+              },
+              "queryRef": "Fact.# of Customers",
+              "nativeQueryRef": "# of Customers"
+            },
+            {
+              "field": {
+                "Measure": {
+                  "Expression": {
+                    "SourceRef": {
+                      "Entity": "Fact"
+                    }
+                  },
+                  "Property": "# of Products"
+                }
+              },
+              "queryRef": "Fact.# of Products",
+              "nativeQueryRef": "# of Products"
+            }
+          ]
+        }
+      }
+    }
+  },
+  "filterConfig": {
+    "filters": [
+      {
+        "name": "a8d0ee1eddb7138ed2fd",
+        "field": {
+          "Measure": {
+            "Expression": {
+              "SourceRef": {
+                "Entity": "Fact"
+              }
+            },
+            "Property": "# of Customers"
+          }
+        },
+        "type": "Advanced"
+      },
+      {
+        "name": "23719877ac6f716c893f",
+        "field": {
+          "Measure": {
+            "Expression": {
+              "SourceRef": {
+                "Entity": "Fact"
+              }
+            },
+            "Property": "# of Products"
+          }
+        },
+        "type": "Advanced"
+      },
+      {
+        "name": "cd4859123fc714058a8e",
+        "field": {
+          "Column": {
+            "Expression": {
+              "SourceRef": {
+                "Entity": "Date"
+              }
+            },
+            "Property": "Month"
+          }
+        },
+        "type": "Categorical"
+      }
+    ]
+  }
+}
