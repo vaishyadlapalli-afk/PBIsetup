@@ -1,0 +1,205 @@
+table v_SDD_ChangeManagementReport_ChangeRequests
+	lineageTag: 1f7c1194-b29c-4c20-802a-e89a9dbda770
+
+	column ChangeRequestNumber
+		dataType: string
+		lineageTag: fc030a1c-42ec-4c26-b8f6-418dc5d65236
+		summarizeBy: none
+		sourceColumn: ChangeRequestNumber
+
+		annotation SummarizationSetBy = Automatic
+
+	column StartDateTime
+		dataType: dateTime
+		formatString: General Date
+		lineageTag: f8eff978-97c5-453d-a69b-4464482608fe
+		summarizeBy: none
+		sourceColumn: StartDateTime
+
+		variation Variation
+			isDefault
+			relationship: cab65b34-c229-40ae-a7b4-5b99bf611c30
+			defaultHierarchy: LocalDateTable_4aa1459f-4ae1-421a-bcab-c477ab857ff1.'Date Hierarchy'
+
+		annotation SummarizationSetBy = Automatic
+
+	column StartDate
+		dataType: dateTime
+		formatString: Long Date
+		lineageTag: fb22284c-ead7-4d9a-bbea-f161d3f91351
+		summarizeBy: none
+		sourceColumn: StartDate
+
+		variation Variation
+			isDefault
+			relationship: 6e8dd667-152b-4def-af22-74f5006e0f67
+			defaultHierarchy: LocalDateTable_1eca48a7-7419-4ddb-8b09-69c7b6230bee.'Date Hierarchy'
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation UnderlyingDateTimeDataType = Date
+
+	column EndDateTime
+		dataType: dateTime
+		formatString: General Date
+		lineageTag: 2c52efad-b780-4fad-88a8-f30c000b961a
+		summarizeBy: none
+		sourceColumn: EndDateTime
+
+		variation Variation
+			isDefault
+			relationship: 92b76926-c1b1-45d0-8d22-a81f24185fdf
+			defaultHierarchy: LocalDateTable_bbd0598c-145c-4277-bed9-77ffbe67fff9.'Date Hierarchy'
+
+		annotation SummarizationSetBy = Automatic
+
+	column EndDate
+		dataType: dateTime
+		formatString: Long Date
+		lineageTag: a8d895ec-8db1-45f8-960e-f04e00554c5a
+		summarizeBy: none
+		sourceColumn: EndDate
+
+		variation Variation
+			isDefault
+			relationship: 20bb67bf-6588-4857-af81-baf8885cd654
+			defaultHierarchy: LocalDateTable_f50f5fe1-9b15-450a-a21f-fc8240fd3879.'Date Hierarchy'
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation UnderlyingDateTimeDataType = Date
+
+	column 'Implementation Result'
+		dataType: string
+		lineageTag: aa2a112a-928a-48c7-a6a8-72704e85d112
+		summarizeBy: none
+		sourceColumn: Implementation Result
+
+		annotation SummarizationSetBy = Automatic
+
+	column Req_Status
+		dataType: string
+		lineageTag: d2247c32-63a3-4841-97e8-58d36afbe246
+		summarizeBy: none
+		sourceColumn: Req_Status
+
+		annotation SummarizationSetBy = Automatic
+
+	column Req_Status_Grouped
+		dataType: string
+		lineageTag: 8454d88c-65c5-44c8-9b20-5cb700b1b42e
+		summarizeBy: none
+		sourceColumn: Req_Status_Grouped
+
+		annotation SummarizationSetBy = Automatic
+
+	column Req_Submission_Form_Name
+		dataType: string
+		lineageTag: b5253ca5-181e-4316-ada0-bc58eab26d0b
+		summarizeBy: none
+		sourceColumn: Req_Submission_Form_Name
+
+		annotation SummarizationSetBy = Automatic
+
+	column ChangeType
+		dataType: string
+		lineageTag: ad377f45-7a3e-4a01-8bb2-f3ebbe1a08de
+		summarizeBy: none
+		sourceColumn: ChangeType
+
+		annotation SummarizationSetBy = Automatic
+
+	column Risk
+		dataType: string
+		lineageTag: 942fc318-f572-439e-a56d-c5b8c02aef1d
+		summarizeBy: none
+		sourceColumn: Risk
+
+		annotation SummarizationSetBy = Automatic
+
+	column Title
+		dataType: string
+		lineageTag: 08a3c652-d60f-4981-81c6-d2221674b2f5
+		summarizeBy: none
+		sourceColumn: Title
+
+		annotation SummarizationSetBy = Automatic
+
+	column Category
+		dataType: string
+		lineageTag: 30b233ae-2c56-4b9d-9f85-fdf55332dcfb
+		summarizeBy: none
+		sourceColumn: Category
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'Service Interruption/Outage'
+		dataType: int64
+		formatString: 0
+		lineageTag: 986ac0df-a8c8-4f10-9317-37122235e9d9
+		summarizeBy: sum
+		sourceColumn: Service Interruption/Outage
+
+		annotation SummarizationSetBy = Automatic
+
+	column BusinessImpact
+		dataType: int64
+		formatString: 0
+		lineageTag: d8919e86-6fc9-4ec5-8c4e-1f1028ee91fb
+		summarizeBy: sum
+		sourceColumn: BusinessImpact
+
+		annotation SummarizationSetBy = Automatic
+
+	column Contact
+		dataType: string
+		lineageTag: 69108d83-4a7e-467a-88dc-f9eb4b4aa9d9
+		summarizeBy: none
+		sourceColumn: Contact
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'Service Interruption/Outage Details'
+		dataType: string
+		lineageTag: 027ec747-c1be-4ec3-8e60-13e2b2711498
+		summarizeBy: none
+		sourceColumn: Service Interruption/Outage Details
+
+		annotation SummarizationSetBy = Automatic
+
+	column Total
+		dataType: int64
+		formatString: 0
+		lineageTag: 06f0ca0b-7d52-4ba9-8ca6-bb37a001f75d
+		summarizeBy: sum
+		sourceColumn: Total
+
+		annotation SummarizationSetBy = Automatic
+
+	column FinancialYear = ```
+			
+			VAR change_date = 'v_SDD_ChangeManagementReport_ChangeRequests'[StartDate]
+			VAR change_year = YEAR(change_date)
+			VAR change_month = MONTH(change_date)
+			VAR financial_year_start = IF(change_month >= 7, change_year, change_year - 1) 
+			RETURN 
+			    financial_year_start & " - " & (financial_year_start + 1)
+			```
+		lineageTag: cf3d2c96-d7db-4095-9a7c-c0b1aaa622a7
+		summarizeBy: none
+
+		annotation SummarizationSetBy = Automatic
+
+	partition v_SDD_ChangeManagementReport_ChangeRequests = m
+		mode: import
+		source =
+				let
+				    Source = Sql.Database("prd-sql-bi\bi", "BIWarehouse"),
+				    dbo_v_SDD_ChangeManagementReport_ChangeRequests_TEST = Source{[Schema="dbo",Item="v_SDD_ChangeManagementReport_ChangeRequests"]}[Data]
+				in
+				    dbo_v_SDD_ChangeManagementReport_ChangeRequests_TEST
+
+	annotation PBI_ResultType = Table
+
+	annotation PBI_NavigationStepName = Navigation
+

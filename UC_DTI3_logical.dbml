@@ -1,0 +1,218 @@
+// Logical model: technology — UC_DTI3 (Change Request Management)
+// 2026-05-14 | status: draft
+//
+// UC_DTI3 scope only. For the full domain view accumulating all use cases see domain_logical.dbml.
+//
+// Business processes modelled:
+//   1. Change request management — the lifecycle of IT change requests from opening through implementation and closure
+//   2. Incident tracking — incidents caused by or linked to a change request (CR-linked only)
+//
+// Grain:
+//   fact_change_request  → 1 row = 1 change request (ServiceNow CR number) | accumulating snapshot
+//   fact_tech_incident        → 1 row = 1 incident linked to a change request | transaction fact
+//
+// Non-additive metric - do not store (CORRECTED 2026-06-02 to match the dashboard DAX):
+//   pct_changes_caused_p1p2_incidents
+//     = count(P1&P2 CR-linked incidents whose linked CR is NOT Informational/Normal Change Request OT)
+//       / count(change requests excluding Informational & Normal Change Request OT)
+//     = 2 / 881 = 0.23%  (reproduces the "Changes that caused P1&2 Incidents" card)
+//   This is a SEMANTIC-LAYER DRILL-ACROSS across two facts:
+//     numerator   -> fact_tech_incident   : is_high_priority (dim_incident_priority) = 1
+//                                       AND change_request_code IS NOT NULL
+//                                       AND linked CR's change_type is not excluded
+//     denominator -> fact_change_request : count where dim_change_type.is_excluded_from_standard_count = 0
+//   The numerator counts INCIDENTS (from fact_tech_incident), NOT count(has_caused_incident = 1) on
+//   fact_change_request. has_caused_incident is a separate general flag (caused ANY incident).
+//
+// Note on fact_tech_incident scope: scoped to CR-linked incidents only in this UC.
+//   UC_DTI2 extends fact_tech_incident to all incidents (change_request_code becomes nullable).
+//   See domain_logical.dbml for the evolved definition.
+//
+// Source system: ServiceNow (exclusively)
+// Open questions listed at the bottom of this file
+
+// -------------------------------------------------------------------------
+// FACTS
+// -------------------------------------------------------------------------
+
+// Accumulating snapshot: 1 row per change request, milestone timestamps updated as CR progresses.
+// Milestone timestamps (scheduled_start, scheduled_end, closed) are nullable until the milestone is reached.
+// opened_date_key retained as yyyyMMdd integer for role-playing dim_date joins (role-playing dims deferred).
+Table fact_change_request [note: '1 row = 1 change request | accumulating snapshot | additive'] {
+  change_request_key varchar
+  change_request_code varchar
+  change_request_number varchar
+  change_request_title varchar
+  change_type_key varchar
+  change_category_key varchar
+  change_risk_key varchar
+  change_status_key varchar
+  impact_key varchar
+  opened_date_key varchar
+  opened_ts varchar
+  scheduled_start_ts varchar
+  scheduled_end_ts varchar
+  closed_ts varchar
+  has_service_interruption varchar
+  has_business_impact varchar
+  has_caused_incident varchar
+}
+
+Ref: dim_change_type.change_type_key < fact_change_request.change_type_key
+Ref: dim_change_category.change_category_key < fact_change_request.change_category_key
+Ref: dim_change_risk.change_risk_key < fact_change_request.change_risk_key
+Ref: dim_change_status.change_status_key < fact_change_request.change_status_key
+Ref: dim_tech_impact.impact_key < fact_change_request.impact_key
+Ref: dim_date.date_key < fact_change_request.opened_date_key
+
+// change_request_code: degenerate dim - the ServiceNow CR number (e.g. CHG0067463)
+// change_request_number: degenerate dim - last 5 characters of change_request_code (e.g. 67463)
+// change_request_title: degenerate dim - the CR TITLE = short_description (legacy view `AS Title`,
+//   Power BI "Title" column). NOT `description` (the long body). Confirmed (OM-23).
+// opened_date_key: yyyyMMdd integer retained for role-playing dim_date; role-playing dims deferred
+// opened_ts, scheduled_start_ts, scheduled_end_ts, closed_ts: full timestamps; scheduled + closed nullable until milestone reached
+// has_service_interruption, has_business_impact, has_caused_incident: boolean flags, additive
+//   has_caused_incident = caused ANY incident (any priority); it is NOT the P1&P2 KPI numerator (see metric note above)
+// pct_changes_caused_p1p2_incidents: non-additive - NOT stored; drill-across in semantic layer (see metric note above)
+
+
+// Transaction fact: 1 row per incident. IMPLEMENTED AT DOMAIN GRAIN (all incidents) per the
+// built mapping and domain_logical.dbml — change_request_code is NULLABLE (non-null = CR-linked).
+// UC_DTI3 analytics use the CR-linked subset: filter change_request_code IS NOT NULL.
+// change_request_code denormalised to support incident-count-by-change-type without a fact-to-fact join.
+// NOTE: the legacy LinkedIncidents view pre-filters priority IN (1, 2). The gold model deliberately
+// does NOT pre-filter — use is_high_priority on dim_incident_priority in the semantic layer instead.
+// The dashboard P1&P2 KPIs are sourced from this fact (see metric note at top of file).
+// team_key omitted in UC_DTI3 (dim_team deferred, OM-17); present in domain_logical.dbml.
+Table fact_tech_incident [note: '1 row = 1 IT incident | transaction fact | additive | UC_DTI3 uses change_request_code IS NOT NULL subset'] {
+  incident_key varchar
+  incident_code varchar
+  incident_priority_key varchar
+  impact_key varchar
+  cr_change_type_key varchar
+  change_request_code varchar
+  opened_date_key varchar
+}
+
+Ref: dim_incident_priority.incident_priority_key < fact_tech_incident.incident_priority_key
+Ref: dim_tech_impact.impact_key < fact_tech_incident.impact_key
+Ref: dim_change_type.change_type_key < fact_tech_incident.cr_change_type_key
+Ref: dim_date.date_key < fact_tech_incident.opened_date_key
+
+// incident_code: degenerate dim - the ServiceNow incident number (e.g. INC0012345)
+// change_request_code: degenerate dim - denormalised CR number to avoid fact-to-fact join
+
+
+// -------------------------------------------------------------------------
+// DIMENSIONS
+// -------------------------------------------------------------------------
+
+// is_excluded_from_standard_count: 1 for the change types excluded from the standard KPI count.
+// Exclusion DISPLAY values CONFIRMED from the dashboard DAX: 'Informational' and
+// 'Normal Change Request OT' (949 total - 22 - 46 = 881). Source field is `type` (no display_value
+// in the ingestion -> name + flag derived; raw `type` codes need profiling, see OM-7/OM-22).
+// VERIFY the six ChangeType values live in `type` and not `u_sub_type` before build (OM-7).
+Table dim_change_type [note: '1 row = 1 change type | SCD1'] {
+  change_type_key varchar
+  change_type_code varchar
+  change_type_name varchar
+  change_sub_type_code varchar
+  change_sub_type_name varchar
+  change_type_description varchar
+  is_excluded_from_standard_count varchar
+}
+
+Table dim_change_category [note: '1 row = 1 technology category | SCD1'] {
+  change_category_key varchar
+  change_category_code varchar
+  change_category_name varchar
+}
+
+// change_risk_name set CONFIRMED from dashboard "Total by Risk": Low (710), Moderate (157),
+// Medium (55), High (27) — four levels, NO "Very High". change_risk_sort_order: numeric sort to
+// enforce Low < Moderate < Medium < High. Source `risk` is a raw INT (no display_value) — raw
+// int -> name needs profiling against the counts (OM-12/OM-22). Use `risk`, not `risk_value`.
+Table dim_change_risk [note: '1 row = 1 risk level | SCD1'] {
+  change_risk_key varchar
+  change_risk_code varchar
+  change_risk_name varchar
+  change_risk_sort_order varchar
+}
+
+// Two RAW source fields feed this dim: state (INT lifecycle state) and close_code (STRING
+// implementation outcome, populated only when state = Closed). The ingestion has NO *_display_value
+// columns (OM-22), so names and the group are DERIVED via CASE.
+// change_status_name is the literal state (e.g. state=4 -> 'Cancelled').
+// change_status_group is the AUTHORITATIVE legacy-view Req_Status_Grouped rule (the Power BI field
+// is is_calculated:false -> it comes from the view): Rejected (state=4 'Cancelled'), Successful
+// (state=3 + close_code Successful/Partially Successful/Not Applicable), Failed (state=3 +
+// Unsuccessful%), Open (state<3), Other (else). NOTE: state=4 is named 'Cancelled' but grouped
+// 'Rejected' by design. close_code compare is case-insensitive (raw casing unconfirmed, OM-9).
+// is_terminal: 1 when the status represents a closed or final state (state in 3,4).
+Table dim_change_status [note: '1 row = 1 change request status | SCD1'] {
+  change_status_key varchar
+  change_status_code varchar
+  change_status_name varchar
+  close_code_name varchar
+  change_status_group varchar
+  is_terminal varchar
+}
+
+// is_high_priority: 1 for P1 and P2 priorities.
+// Supports the "P1 & P2 Incidents caused by change" KPI without hardcoding priority codes in the semantic layer.
+// incident_priority_sort_order: numeric sort to enforce P1 > P2 > P3 ordering.
+Table dim_incident_priority [note: '1 row = 1 incident priority level | SCD1'] {
+  incident_priority_key varchar
+  incident_priority_code varchar
+  incident_priority_name varchar
+  incident_priority_sort_order varchar
+  is_high_priority varchar
+}
+
+// Business impact picklist on the ServiceNow task table — conformed across CR + incident facts.
+// impact_name comes from sys_choice.label (e.g. '1 - High', '2 - Medium', '3 - Low').
+// impact_sort_order is the canonical sys_choice.sequence (1 = most impact).
+Table dim_tech_impact [note: '1 row = 1 impact level | SCD1'] {
+  impact_key varchar
+  impact_code varchar
+  impact_name varchar
+  impact_sort_order varchar
+}
+
+// Conformed dimension - canonical definition in data_models/finance/logical.dbml
+// Stubbed here for diagram rendering only - do not duplicate attributes
+Table dim_date [note: '1 row = 1 calendar date | conformed - defined in finance domain'] {
+  date_key varchar
+}
+
+
+// -------------------------------------------------------------------------
+// OPEN QUESTIONS  (refreshed 2026-06-02 — Databricks ingestion + dashboard review)
+// -------------------------------------------------------------------------
+// Platform note: gold now sources from the cleansed Databricks models servicenow_change_request /
+// servicenow_incident (SCD2). There are NO *_display_value columns (OM-22) — all names/groups are
+// derived. The "source view" referenced in older notes is the legacy SQL Server view, retained
+// only as the authoritative business-rule reference (e.g. Req_Status_Grouped).
+//
+// RESOLVED (see mapping-gate.md): opened_date_key = opened_at (OM-2); closed_date_key = closed_at
+//   (OM-3, first version at state=3); scheduled_start = start_date (OM-15); scheduled_end = end_date
+//   (OM-16); has_service_interruption = production_system (OM-4); change_request_code = number (OM-8);
+//   change_request_title = short_description (OM-23); incident<->CR link inc.rfc_value = chg.sys_id (OM-21).
+//
+// STILL OPEN:
+// A. [RESOLVED — OM-7] dim_change_type field: profiled 2026-06-03. Five type/u_sub_type combinations:
+//    emergency+null=Emergency, normal+infoict=Informational, normal+normalict='Normal Low Risk Change
+//    Request', normal+normalot='Normal Change Request OT', standard+null=Standard. No plain 'Normal'
+//    (null u_sub_type) records exist in Databricks data. 'Normal Low Risk Change Request' confirmed
+//    from report visual filter values (visual title 'Normal Low Risk Changes' is a display label only).
+//    Exclusion strings CONFIRMED: infoict (Informational) + normalot (Normal Change Request OT).
+// B. [OM-12] dim_change_risk raw int -> name. NAME SET CONFIRMED from "Total by Risk": Low(710),
+//    Moderate(157), Medium(55), High(27). Map each int to a name by matching the counts.
+// C. [OM-9] dim_change_status: confirm raw close_code value set + casing (comparison is case-insensitive
+//    as a safeguard). Individual state names (New/Assess/...) unconfirmed; group rule is authoritative.
+// D. [OM-5] has_business_impact: chg.impact is categorical (1=High,2=Medium,3=Low). Decide boolean flag
+//    vs business_impact_level varchar. Option (b) needs a modelling-gate re-review.
+// E. [OM-8] change_type_description: no source field in the ingestion (confirmed blocked).
+// F. [OM-11] dim_incident_priority full value set; is_high_priority = priority IN (1,2) CONFIRMED.
+// G. [OM-14] primary date role for the Power BI active relationship (assumed opened_date_key).
+// H. [OM-13] accumulating-snapshot windowed build for fact_change_request (AE).

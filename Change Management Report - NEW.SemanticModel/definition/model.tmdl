@@ -1,0 +1,39 @@
+model Model
+	culture: en-AU
+	defaultPowerBIDataSourceVersion: powerBI_V3
+	sourceQueryCulture: en-AU
+	dataAccessOptions
+		legacyRedirects
+		returnErrorValuesAsNull
+
+annotation PBI_QueryOrder = ["v_datedim","DataRefresh","v_SDD_ChangeManagementReport_LinkedIncidents","v_SDD_ChangeManagementReport_ChangeRequests"]
+
+annotation __PBI_TimeIntelligenceEnabled = 1
+
+annotation PBI_ProTooling = ["DevMode"]
+
+ref table v_datedim
+ref table DateTableTemplate_01375f2f-24cd-4be1-ae12-ced004f44807
+ref table LocalDateTable_ad61c0e8-12d9-4684-86de-e29a69ca64f3
+ref table LocalDateTable_00fa45d8-cc06-4fc2-978e-60941ab18370
+ref table LocalDateTable_de805c9a-abed-47ac-a495-5a539a04a0c8
+ref table LocalDateTable_8364d685-d8c2-474e-a9fc-909683f161d8
+ref table LocalDateTable_a1b601be-4e50-411e-90ad-101415988a3c
+ref table LocalDateTable_f0e39899-a10e-48c0-bec2-c2bced53c3f6
+ref table LocalDateTable_b84f5cfb-618a-4918-9d3f-11d92f8bf327
+ref table LocalDateTable_c6fbc19e-7ae5-4e3f-90aa-7c95a98ead03
+ref table LocalDateTable_6136995d-684f-4063-a40d-bc47e1f41651
+ref table LocalDateTable_2cbf849d-a843-4120-9746-1590f7e6de7e
+ref table LocalDateTable_b5ddebb5-9688-4f04-9d4f-bd422212f2f3
+ref table DataRefresh
+ref table LocalDateTable_aba4b7a9-3167-412c-a408-cf85d9829960
+ref table MeasuresTable
+ref table v_SDD_ChangeManagementReport_LinkedIncidents
+ref table v_SDD_ChangeManagementReport_ChangeRequests
+ref table LocalDateTable_4aa1459f-4ae1-421a-bcab-c477ab857ff1
+ref table LocalDateTable_1eca48a7-7419-4ddb-8b09-69c7b6230bee
+ref table LocalDateTable_bbd0598c-145c-4277-bed9-77ffbe67fff9
+ref table LocalDateTable_f50f5fe1-9b15-450a-a21f-fc8240fd3879
+
+ref cultureInfo en-AU
+

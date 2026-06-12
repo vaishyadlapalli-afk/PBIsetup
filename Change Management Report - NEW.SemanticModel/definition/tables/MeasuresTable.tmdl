@@ -1,0 +1,88 @@
+table MeasuresTable
+	lineageTag: d25df006-fd9b-4578-9a32-e01661636958
+
+	measure M_LastRefresh = MAXX(DataRefresh, DataRefresh[RefreshTimestamp])
+		formatString: General Date
+		lineageTag: 072c2e67-226b-47c7-b293-2235cda9b7c2
+
+	measure M_RefreshStatus = "Data last refreshed on: " & FORMAT([M_LastRefresh], "DD/mm/yyyy hh:mm AM/PM")
+		lineageTag: 9a04dc1c-fd87-4308-9ed3-29adee75dc19
+
+	measure FinancialYear =
+			
+			VAR change_date = MIN(v_SDD_ChangeManagementReport_ChangeRequests[StartDate])
+			VAR this_fy = YEAR ( DATE ( YEAR ( NOW() ), MONTH ( NOW () ) + 6, 1 ) )
+			VAR change_year = YEAR ( DATE ( YEAR ( change_date ), MONTH ( change_date ) + 6, 1 ) )
+			RETURN
+			IF(change_year < this_fy - 1,
+			    CONCATENATE(CONCATENATE(YEAR(NOW())-2," - "), YEAR(NOW())-1),
+			    IF ( this_fy = change_year, CONCATENATE(CONCATENATE(YEAR(NOW())," - "), YEAR(NOW())+1), CONCATENATE(CONCATENATE(YEAR(NOW())-1," - "), YEAR(NOW())))
+			)
+		lineageTag: fcd265e0-8ddd-415f-8a7d-72e9239762f1
+
+	measure TotalChangeRequestss = SUM(v_SDD_ChangeManagementReport_ChangeRequests[Total])
+		formatString: 0
+		lineageTag: bbd23e04-8a3b-4f9a-9920-296f6204e5bc
+
+	measure ChangeRequestsExcludingInfoNormalOT =
+			
+			CALCULATE (
+			    SUM ( v_SDD_ChangeManagementReport_ChangeRequests[Total] ),
+			    EXCEPT (
+			        ALL ( v_SDD_ChangeManagementReport_ChangeRequests[ChangeType] ),
+			        { "Informational", "Normal Change Request OT" }
+			    )
+			)
+		formatString: 0
+		lineageTag: f52248b4-7d9d-47ba-87c7-2e3cc45617a9
+
+	measure %ChangesCausedP1P2 =
+			
+			FORMAT(
+			    CALCULATE(
+			        DIVIDE(
+			            [TotalP1P2Incidents_NotInformationNormalOT],
+			            [ChangeRequestsExcludingInfoNormalOT]
+			        )
+			    ),
+			    "0.00%" // Or "0%" for whole percentages, "0.0%" for one decimal place, etc.
+			)
+		lineageTag: c67120b4-b639-4a3c-852e-78d413c9f27e
+
+	measure TotalP1P2Incidents =
+			
+			CALCULATE (
+			    COUNT ( v_SDD_ChangeManagementReport_LinkedIncidents[LinkedIncidentPriority] ),
+			    v_SDD_ChangeManagementReport_LinkedIncidents[LinkedIncidentPriority] IN { 1, 2 }
+			)
+		formatString: 0
+		lineageTag: f2635d1b-3ae5-4ad1-96a6-f0d4b40b27a9
+
+	measure TotalP1P2Incidents_NotInformationNormalOT =
+			
+			CALCULATE (
+			    COUNT ( v_SDD_ChangeManagementReport_LinkedIncidents[LinkedIncidentPriority] ),
+			    v_SDD_ChangeManagementReport_LinkedIncidents[LinkedIncidentPriority] IN { 1, 2 },
+			    // Relationship is required between Change Requests and Linked Incidents tables
+			    RELATEDTABLE ( v_SDD_ChangeManagementReport_ChangeRequests ),
+			    NOT ( v_SDD_ChangeManagementReport_ChangeRequests[ChangeType] IN { "Informational", "Normal Change Request OT" } )
+			)
+		formatString: 0
+		lineageTag: 75dc1e20-0951-421b-9cff-40f56d7b0fca
+
+	column Column
+		isHidden
+		formatString: 0
+		lineageTag: 62f4b31b-ce83-4d95-8bbf-92388e231f55
+		summarizeBy: sum
+		isNameInferred
+		sourceColumn: [Column]
+
+		annotation SummarizationSetBy = Automatic
+
+	partition MeasuresTable = calculated
+		mode: import
+		source = Row("Column", BLANK())
+
+	annotation PBI_Id = d6e86b2c08594fdd98c3d32d029bef2a
+

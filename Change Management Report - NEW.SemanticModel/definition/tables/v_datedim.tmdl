@@ -1,0 +1,438 @@
+table v_datedim
+	lineageTag: c076a375-58ae-4532-bac0-7e70465bf499
+
+	column DateKey
+		dataType: int64
+		formatString: 0
+		lineageTag: 1e440693-b5e9-4282-aacc-622a5c091e9c
+		summarizeBy: count
+		sourceColumn: DateKey
+
+		annotation SummarizationSetBy = Automatic
+
+	column FullDateTime
+		dataType: dateTime
+		formatString: General Date
+		lineageTag: 11258e93-8b02-4886-91ec-04ea6d0d7080
+		summarizeBy: none
+		sourceColumn: FullDateTime
+
+		variation Variation
+			isDefault
+			relationship: 963fc802-198f-43c3-8d00-c4e68dd29603
+			defaultHierarchy: LocalDateTable_ad61c0e8-12d9-4684-86de-e29a69ca64f3.'Date Hierarchy'
+
+		annotation SummarizationSetBy = Automatic
+
+	column FullDate
+		dataType: dateTime
+		formatString: dd/mm/yyyy
+		lineageTag: af057ffa-eff7-446e-ada1-bbb1f1391f6e
+		summarizeBy: none
+		sourceColumn: FullDate
+
+		variation Variation
+			isDefault
+			relationship: e5c0e279-490b-4d87-bd8e-da3d4c269608
+			defaultHierarchy: LocalDateTable_00fa45d8-cc06-4fc2-978e-60941ab18370.'Date Hierarchy'
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation UnderlyingDateTimeDataType = Date
+
+		annotation PBI_FormatHint = {"isDateTimeCustom":true}
+
+	column DayOfWeek
+		dataType: int64
+		formatString: 0
+		lineageTag: 30ab1b45-d7a0-4c05-aef8-b63c71d5f11f
+		summarizeBy: sum
+		sourceColumn: DayOfWeek
+
+		annotation SummarizationSetBy = Automatic
+
+	column DayName
+		dataType: string
+		lineageTag: 8eeb9dcf-13bb-4de7-a573-490035736956
+		summarizeBy: none
+		sourceColumn: DayName
+
+		annotation SummarizationSetBy = Automatic
+
+	column DayOfWeekFirstLetter
+		dataType: string
+		lineageTag: 04a5673a-a064-4551-8260-6f06841272b6
+		summarizeBy: none
+		sourceColumn: DayOfWeekFirstLetter
+
+		annotation SummarizationSetBy = Automatic
+
+	column DayOfWeekNameShort
+		dataType: string
+		lineageTag: 9daf006c-7969-44c3-8e46-5ce4d309a5a5
+		summarizeBy: none
+		sourceColumn: DayOfWeekNameShort
+
+		annotation SummarizationSetBy = Automatic
+
+	column DayOfMonth
+		dataType: int64
+		formatString: 0
+		lineageTag: e8ba9356-8aee-442e-868d-8c45a084009f
+		summarizeBy: sum
+		sourceColumn: DayOfMonth
+
+		annotation SummarizationSetBy = Automatic
+
+	column DayOfYear
+		dataType: int64
+		formatString: 0
+		lineageTag: c09f3042-5b4e-465b-b494-80a2aa3713b1
+		summarizeBy: sum
+		sourceColumn: DayOfYear
+
+		annotation SummarizationSetBy = Automatic
+
+	column WeekOfYear
+		dataType: int64
+		formatString: 0
+		lineageTag: bac0f549-efe4-45df-b032-05acba748e72
+		summarizeBy: sum
+		sourceColumn: WeekOfYear
+
+		annotation SummarizationSetBy = Automatic
+
+	column WeekOfMonth
+		dataType: int64
+		formatString: 0
+		lineageTag: a47afc8c-dae2-4208-82cd-0c0240ca4d11
+		summarizeBy: sum
+		sourceColumn: WeekOfMonth
+
+		annotation SummarizationSetBy = Automatic
+
+	column MonthNumber
+		dataType: int64
+		formatString: 0
+		lineageTag: e81b6a76-201a-43db-aca0-e3f3a46d9b74
+		summarizeBy: sum
+		sourceColumn: MonthNumber
+
+		annotation SummarizationSetBy = Automatic
+
+	column MonthName
+		dataType: string
+		lineageTag: 89c14536-dbea-4925-9b9e-94aa1ad8f171
+		summarizeBy: none
+		sourceColumn: MonthName
+
+		annotation SummarizationSetBy = Automatic
+
+	column MonthNameShort
+		dataType: string
+		lineageTag: 158adc8e-238f-44f7-9f9f-68d58a1f798b
+		summarizeBy: none
+		sourceColumn: MonthNameShort
+
+		annotation SummarizationSetBy = Automatic
+
+	column MonthFirstLetter
+		dataType: string
+		lineageTag: a0a76a64-3891-4867-a5c1-0af148fcb695
+		summarizeBy: none
+		sourceColumn: MonthFirstLetter
+
+		annotation SummarizationSetBy = Automatic
+
+	column IsWeekend
+		dataType: int64
+		formatString: 0
+		lineageTag: d26d23fa-11a5-4ee1-8c62-0c1459a2e535
+		summarizeBy: sum
+		sourceColumn: IsWeekend
+
+		annotation SummarizationSetBy = Automatic
+
+	column CalendarYear
+		dataType: int64
+		formatString: 0
+		lineageTag: 3ed10786-4838-45da-8ab4-7171ef83b3e9
+		summarizeBy: sum
+		sourceColumn: CalendarYear
+
+		annotation SummarizationSetBy = Automatic
+
+	column CalendarQuarter
+		dataType: int64
+		formatString: 0
+		lineageTag: b0d2778c-0f93-4938-a8df-26b0d119a661
+		summarizeBy: sum
+		sourceColumn: CalendarQuarter
+
+		annotation SummarizationSetBy = Automatic
+
+	column CalendarQuarterName
+		dataType: string
+		lineageTag: 50928daa-bbbb-4774-815c-4db98bbe4fa0
+		summarizeBy: none
+		sourceColumn: CalendarQuarterName
+
+		annotation SummarizationSetBy = Automatic
+
+	column CalendarMonthSequenceInYear
+		dataType: int64
+		formatString: 0
+		lineageTag: fa3e90c9-9a23-42b8-98b6-14340e9e5e3f
+		summarizeBy: sum
+		sourceColumn: CalendarMonthSequenceInYear
+
+		annotation SummarizationSetBy = Automatic
+
+	column CalendarMonthSequenceInQuarter
+		dataType: int64
+		formatString: 0
+		lineageTag: 835a9451-a68f-4d1a-b24c-d7d2471d8e77
+		summarizeBy: sum
+		sourceColumn: CalendarMonthSequenceInQuarter
+
+		annotation SummarizationSetBy = Automatic
+
+	column CalendarWeekSequenceInYear
+		dataType: int64
+		formatString: 0
+		lineageTag: 6a747238-07b6-400f-ac83-fe6cfd78d501
+		summarizeBy: sum
+		sourceColumn: CalendarWeekSequenceInYear
+
+		annotation SummarizationSetBy = Automatic
+
+	column CalendarWeekSequenceInQuarter
+		dataType: int64
+		formatString: 0
+		lineageTag: e4c13600-4519-467c-99ea-1977f18c280a
+		summarizeBy: sum
+		sourceColumn: CalendarWeekSequenceInQuarter
+
+		annotation SummarizationSetBy = Automatic
+
+	column CalendarFirstDayOfMonth
+		dataType: dateTime
+		formatString: General Date
+		lineageTag: 2540435c-f25b-47ac-beac-ad0b05c39599
+		summarizeBy: none
+		sourceColumn: CalendarFirstDayOfMonth
+
+		variation Variation
+			isDefault
+			relationship: a1d8974e-5760-43eb-89a9-8b31b51252c4
+			defaultHierarchy: LocalDateTable_de805c9a-abed-47ac-a495-5a539a04a0c8.'Date Hierarchy'
+
+		annotation SummarizationSetBy = Automatic
+
+	column CalendarLastDayOfMonth
+		dataType: dateTime
+		formatString: Long Date
+		lineageTag: c3b12599-1d37-4ea7-8e7b-87b4436535d0
+		summarizeBy: none
+		sourceColumn: CalendarLastDayOfMonth
+
+		variation Variation
+			isDefault
+			relationship: 51949a2b-08d1-4a1b-b3c0-ed2a6917fad0
+			defaultHierarchy: LocalDateTable_8364d685-d8c2-474e-a9fc-909683f161d8.'Date Hierarchy'
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation UnderlyingDateTimeDataType = Date
+
+	column CalendarFirstDayOfQuarter
+		dataType: dateTime
+		formatString: Long Date
+		lineageTag: 7298b578-8e00-46db-a076-11b05a59661e
+		summarizeBy: none
+		sourceColumn: CalendarFirstDayOfQuarter
+
+		variation Variation
+			isDefault
+			relationship: cd269c4f-90cb-4b81-ab46-431125152e5f
+			defaultHierarchy: LocalDateTable_a1b601be-4e50-411e-90ad-101415988a3c.'Date Hierarchy'
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation UnderlyingDateTimeDataType = Date
+
+	column CalendarLastDayOfQuarter
+		dataType: dateTime
+		formatString: Long Date
+		lineageTag: 741043f0-30be-4ba0-888f-c6f5d7597c4d
+		summarizeBy: none
+		sourceColumn: CalendarLastDayOfQuarter
+
+		variation Variation
+			isDefault
+			relationship: e453acbb-6693-4954-b65f-f2159f4199f7
+			defaultHierarchy: LocalDateTable_f0e39899-a10e-48c0-bec2-c2bced53c3f6.'Date Hierarchy'
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation UnderlyingDateTimeDataType = Date
+
+	column CalendarFirstDayOfYear
+		dataType: dateTime
+		formatString: Long Date
+		lineageTag: 7319993c-86ed-47f0-946f-2ab2cf5109f2
+		summarizeBy: none
+		sourceColumn: CalendarFirstDayOfYear
+
+		variation Variation
+			isDefault
+			relationship: 8c1672e0-9be5-415c-b2ff-3ac1d1d99065
+			defaultHierarchy: LocalDateTable_b84f5cfb-618a-4918-9d3f-11d92f8bf327.'Date Hierarchy'
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation UnderlyingDateTimeDataType = Date
+
+	column CalendarLastDayOfYear
+		dataType: dateTime
+		formatString: Long Date
+		lineageTag: 734b890d-b96c-4bba-9614-7d21e0f67a02
+		summarizeBy: none
+		sourceColumn: CalendarLastDayOfYear
+
+		variation Variation
+			isDefault
+			relationship: 47d8cf34-0d14-4d8a-9530-bfa2d0949519
+			defaultHierarchy: LocalDateTable_c6fbc19e-7ae5-4e3f-90aa-7c95a98ead03.'Date Hierarchy'
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation UnderlyingDateTimeDataType = Date
+
+	column FinancialYear
+		dataType: int64
+		formatString: 0
+		lineageTag: b6e069fc-5625-489f-8fc6-681bc06dca65
+		summarizeBy: none
+		sourceColumn: FinancialYear
+
+		annotation SummarizationSetBy = User
+
+	column FinancialQuarter
+		dataType: int64
+		formatString: 0
+		lineageTag: 4a4a63f9-b928-44ac-b1ce-ada31aa6eb14
+		summarizeBy: none
+		sourceColumn: FinancialQuarter
+
+		annotation SummarizationSetBy = User
+
+	column FinancialQuarterName
+		dataType: string
+		lineageTag: 017a190a-31cd-47d6-b4d4-3483d42d69b1
+		summarizeBy: none
+		sourceColumn: FinancialQuarterName
+
+		annotation SummarizationSetBy = Automatic
+
+	column FinancialMonthSequenceInYear
+		dataType: int64
+		formatString: 0
+		lineageTag: 66c2c380-150d-481a-ad21-3d629fea8ad3
+		summarizeBy: sum
+		sourceColumn: FinancialMonthSequenceInYear
+
+		annotation SummarizationSetBy = Automatic
+
+	column FinancialMonthSequenceInQuarter
+		dataType: int64
+		formatString: 0
+		lineageTag: 38479705-7849-4e36-bed5-dd98cabdf7d5
+		summarizeBy: sum
+		sourceColumn: FinancialMonthSequenceInQuarter
+
+		annotation SummarizationSetBy = Automatic
+
+	column FinancialWeekSequenceInYear
+		dataType: int64
+		formatString: 0
+		lineageTag: c45aa8ab-7d41-4cd1-9a9e-2e3525186cf2
+		summarizeBy: sum
+		sourceColumn: FinancialWeekSequenceInYear
+
+		annotation SummarizationSetBy = Automatic
+
+	column FinancialWeekSequenceInQuarter
+		dataType: int64
+		formatString: 0
+		lineageTag: d69545b6-b131-4383-b164-70803b19045b
+		summarizeBy: sum
+		sourceColumn: FinancialWeekSequenceInQuarter
+
+		annotation SummarizationSetBy = Automatic
+
+	column FinancialFirstDayOfQuarter
+		dataType: dateTime
+		formatString: dd/mm/yyyy
+		lineageTag: 48ca41b8-ab1b-4b28-a712-1ab4a6afe925
+		summarizeBy: none
+		sourceColumn: FinancialFirstDayOfQuarter
+
+		variation Variation
+			isDefault
+			relationship: 7e325809-af88-4529-ae50-7dadb5f347ab
+			defaultHierarchy: LocalDateTable_6136995d-684f-4063-a40d-bc47e1f41651.'Date Hierarchy'
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation UnderlyingDateTimeDataType = Date
+
+		annotation PBI_FormatHint = {"isDateTimeCustom":true}
+
+	column FinancialLastDayOfQuarter
+		dataType: dateTime
+		formatString: dd/mm/yyyy
+		lineageTag: 7059b92c-fe2e-47d2-a20a-7edd4cb742fa
+		summarizeBy: none
+		sourceColumn: FinancialLastDayOfQuarter
+
+		variation Variation
+			isDefault
+			relationship: 0a89750d-06ce-42b5-b94d-13bfc8e7ba71
+			defaultHierarchy: LocalDateTable_2cbf849d-a843-4120-9746-1590f7e6de7e.'Date Hierarchy'
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation UnderlyingDateTimeDataType = Date
+
+		annotation PBI_FormatHint = {"isDateTimeCustom":true}
+
+	column FinancialFirstDayOfYear
+		dataType: dateTime
+		formatString: dd/mm/yyyy
+		lineageTag: 972b94e0-7032-4a73-ae36-7f4a87d8429b
+		summarizeBy: none
+		sourceColumn: FinancialFirstDayOfYear
+
+		variation Variation
+			isDefault
+			relationship: 24877845-529b-449e-b147-69f303d652a7
+			defaultHierarchy: LocalDateTable_b5ddebb5-9688-4f04-9d4f-bd422212f2f3.'Date Hierarchy'
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation UnderlyingDateTimeDataType = Date
+
+		annotation PBI_FormatHint = {"isDateTimeCustom":true}
+
+	partition v_datedim = m
+		mode: import
+		source =
+				let
+				    Source = Sql.Database("prd-sql-bi\bi", "BIWarehouse"),
+				    dbo_v_datedim = Source{[Schema="dbo",Item="v_datedim"]}[Data]
+				in
+				    dbo_v_datedim
+
+	annotation PBI_ResultType = Table
+

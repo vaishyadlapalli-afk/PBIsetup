@@ -1,0 +1,284 @@
+{
+  "$schema": "https://developer.microsoft.com/json-schemas/fabric/item/report/definition/visualContainer/2.9.0/schema.json",
+  "name": "5e2e5d80d98c20b28d54",
+  "position": {
+    "x": 21.60771704180064,
+    "y": 190.35369774919613,
+    "z": 0,
+    "height": 473.31189710610931,
+    "width": 979.54983922829581,
+    "tabOrder": 0
+  },
+  "visual": {
+    "visualType": "tableEx",
+    "query": {
+      "queryState": {
+        "Values": {
+          "projections": [
+            {
+              "field": {
+                "Column": {
+                  "Expression": {
+                    "SourceRef": {
+                      "Entity": "v_SDD_ChangeManagementReport_ChangeRequests"
+                    }
+                  },
+                  "Property": "ChangeRequestNumber"
+                }
+              },
+              "queryRef": "v_SDD_ChangeManagementReport_ChangeRequests.ChangeRequestNumber1",
+              "nativeQueryRef": "CR Number",
+              "displayName": "CR Number"
+            },
+            {
+              "field": {
+                "Column": {
+                  "Expression": {
+                    "SourceRef": {
+                      "Entity": "v_SDD_ChangeManagementReport_ChangeRequests"
+                    }
+                  },
+                  "Property": "Title"
+                }
+              },
+              "queryRef": "v_SDD_ChangeManagementReport_ChangeRequests.Title1",
+              "nativeQueryRef": "Title1"
+            },
+            {
+              "field": {
+                "Column": {
+                  "Expression": {
+                    "SourceRef": {
+                      "Entity": "v_SDD_ChangeManagementReport_ChangeRequests"
+                    }
+                  },
+                  "Property": "Category"
+                }
+              },
+              "queryRef": "v_SDD_ChangeManagementReport_ChangeRequests.Category1",
+              "nativeQueryRef": "Category1"
+            },
+            {
+              "field": {
+                "Column": {
+                  "Expression": {
+                    "SourceRef": {
+                      "Entity": "v_SDD_ChangeManagementReport_ChangeRequests"
+                    }
+                  },
+                  "Property": "StartDateTime"
+                }
+              },
+              "queryRef": "v_SDD_ChangeManagementReport_ChangeRequests.StartDateTime1",
+              "nativeQueryRef": "StartDateTime"
+            },
+            {
+              "field": {
+                "Column": {
+                  "Expression": {
+                    "SourceRef": {
+                      "Entity": "v_SDD_ChangeManagementReport_ChangeRequests"
+                    }
+                  },
+                  "Property": "EndDateTime"
+                }
+              },
+              "queryRef": "v_SDD_ChangeManagementReport_ChangeRequests.EndDateTime1",
+              "nativeQueryRef": "EndDateTime"
+            },
+            {
+              "field": {
+                "Column": {
+                  "Expression": {
+                    "SourceRef": {
+                      "Entity": "v_SDD_ChangeManagementReport_ChangeRequests"
+                    }
+                  },
+                  "Property": "BusinessImpact"
+                }
+              },
+              "queryRef": "v_SDD_ChangeManagementReport_ChangeRequests.BusinessImpact1",
+              "nativeQueryRef": "BusinessImpact1"
+            },
+            {
+              "field": {
+                "Column": {
+                  "Expression": {
+                    "SourceRef": {
+                      "Entity": "v_SDD_ChangeManagementReport_ChangeRequests"
+                    }
+                  },
+                  "Property": "Service Interruption/Outage"
+                }
+              },
+              "queryRef": "v_SDD_ChangeManagementReport_ChangeRequests.Service Interruption/Outage1",
+              "nativeQueryRef": "Service Interruption/Outage1"
+            },
+            {
+              "field": {
+                "Column": {
+                  "Expression": {
+                    "SourceRef": {
+                      "Entity": "v_SDD_ChangeManagementReport_ChangeRequests"
+                    }
+                  },
+                  "Property": "Contact"
+                }
+              },
+              "queryRef": "v_SDD_ChangeManagementReport_ChangeRequests.Contact1",
+              "nativeQueryRef": "Contact1"
+            }
+          ],
+          "showAll": true
+        }
+      },
+      "sortDefinition": {
+        "sort": [
+          {
+            "field": {
+              "Column": {
+                "Expression": {
+                  "SourceRef": {
+                    "Entity": "v_SDD_ChangeManagementReport_ChangeRequests"
+                  }
+                },
+                "Property": "ChangeRequestNumber"
+              }
+            },
+            "direction": "Ascending"
+          }
+        ]
+      }
+    },
+    "objects": {
+      "values": [
+        {
+          "properties": {
+            "fontSize": {
+              "expr": {
+                "Literal": {
+                  "Value": "9D"
+                }
+              }
+            }
+          }
+        }
+      ],
+      "grid": [
+        {
+          "properties": {
+            "gridHorizontalColor": {
+              "solid": {
+                "color": {
+                  "expr": {
+                    "ThemeDataColor": {
+                      "ColorId": 0,
+                      "Percent": -0.1
+                    }
+                  }
+                }
+              }
+            },
+            "gridVertical": {
+              "expr": {
+                "Literal": {
+                  "Value": "false"
+                }
+              }
+            }
+          }
+        }
+      ],
+      "columnHeaders": [
+        {
+          "properties": {
+            "backColor": {
+              "solid": {
+                "color": {
+                  "expr": {
+                    "ThemeDataColor": {
+                      "ColorId": 6,
+                      "Percent": 0.6
+                    }
+                  }
+                }
+              }
+            },
+            "fontColor": {
+              "solid": {
+                "color": {
+                  "expr": {
+                    "ThemeDataColor": {
+                      "ColorId": 1,
+                      "Percent": 0
+                    }
+                  }
+                }
+              }
+            },
+            "bold": {
+              "expr": {
+                "Literal": {
+                  "Value": "true"
+                }
+              }
+            },
+            "alignment": {
+              "expr": {
+                "Literal": {
+                  "Value": "'Center'"
+                }
+              }
+            }
+          }
+        }
+      ],
+      "columnWidth": [
+        {
+          "properties": {
+            "value": {
+              "expr": {
+                "Literal": {
+                  "Value": "113.33333333333333D"
+                }
+              }
+            }
+          },
+          "selector": {
+            "metadata": "v_SDD_ChangeManagementReport_ChangeRequests.Category1"
+          }
+        },
+        {
+          "properties": {
+            "value": {
+              "expr": {
+                "Literal": {
+                  "Value": "490.8888888888889D"
+                }
+              }
+            }
+          },
+          "selector": {
+            "metadata": "v_SDD_ChangeManagementReport_ChangeRequests.Title1"
+          }
+        }
+      ]
+    },
+    "visualContainerObjects": {
+      "stylePreset": [
+        {
+          "properties": {
+            "name": {
+              "expr": {
+                "Literal": {
+                  "Value": "'Condensed'"
+                }
+              }
+            }
+          }
+        }
+      ]
+    },
+    "drillFilterOtherVisuals": true
+  }
+}

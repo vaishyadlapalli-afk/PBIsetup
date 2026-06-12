@@ -1,0 +1,33 @@
+{
+  "name": "seqwater",
+  "textClasses": {
+    "callout": {
+      "fontFace": "'Arial Black'",
+      "fontSize": 20
+    },
+    "title": {
+      "fontFace": "Arial",
+      "fontSize": 11
+    },
+    "header": {
+      "fontFace": "Arial",
+      "fontSize": 10
+    },
+    "label": {
+      "fontFace": "Arial"
+    }
+  },
+  "dataColors": [
+    "#009FDF",
+    "#6FA287",
+    "#888B8D",
+    "#FFC72C",
+    "#0091B3",
+    "#004A88",
+    "#F26522",
+    "#00385A"
+  ],
+  "minimum": "#BAE0CD",
+  "center": "#7ECCC2",
+  "maximum": "#71CBF4"
+}
