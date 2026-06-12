@@ -114,20 +114,6 @@
               "queryRef": "fact_change_request.Service Interruption/Outage1",
               "nativeQueryRef": "Service Interruption/Outage1"
             },
-            {
-              "field": {
-                "Column": {
-                  "Expression": {
-                    "SourceRef": {
-                      "Entity": "fact_change_request"
-                    }
-                  },
-                  "Property": "Contact"
-                }
-              },
-              "queryRef": "fact_change_request.Contact1",
-              "nativeQueryRef": "Contact1"
-            }
           ],
           "showAll": true
         }

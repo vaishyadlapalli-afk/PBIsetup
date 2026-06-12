@@ -21,58 +21,7 @@
     }
   },
   "filterConfig": {
-    "filters": [
-      {
-        "name": "f7d9939c05c000b76b7b",
-        "field": {
-          "Column": {
-            "Expression": {
-              "SourceRef": {
-                "Entity": "dim_date"
-              }
-            },
-            "Property": "financial_year_long_name"
-          }
-        },
-        "type": "Categorical",
-        "filter": {
-          "Version": 2,
-          "From": [
-            {
-              "Name": "d",
-              "Entity": "dim_date",
-              "Type": 0
-            }
-          ],
-          "Where": [
-            {
-              "Condition": {
-                "Not": {
-                  "Expression": {
-                    "FunctionCall": {
-                      "Function": "IsBlank",
-                      "FunctionParameters": [
-                        {
-                          "Column": {
-                            "Expression": {
-                              "SourceRef": {
-                                "Source": "d"
-                              }
-                            },
-                            "Property": "financial_year_long_name"
-                          }
-                        }
-                      ]
-                    }
-                  }
-                }
-              }
-            }
-          ]
-        },
-        "howCreated": "User"
-      }
-    ]
+    "filters": []
   },
   "objects": {
     "section": [

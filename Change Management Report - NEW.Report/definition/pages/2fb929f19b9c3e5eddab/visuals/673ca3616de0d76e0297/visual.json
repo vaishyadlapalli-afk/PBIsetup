@@ -17,22 +17,17 @@
           "projections": [
             {
               "field": {
-                "Aggregation": {
+                "Measure": {
                   "Expression": {
-                    "Column": {
-                      "Expression": {
-                        "SourceRef": {
-                          "Entity": "fact_change_request"
-                        }
-                      },
-                      "Property": "change_request_key"
+                    "SourceRef": {
+                      "Entity": "MeasuresTable"
                     }
                   },
-                  "Function": 0
+                  "Property": "TotalChangeRequests"
                 }
               },
-              "queryRef": "Sum(fact_change_request.Total)",
-              "nativeQueryRef": "Sum of Total"
+              "queryRef": "MeasuresTable.TotalChangeRequests",
+              "nativeQueryRef": "Total Change Requests"
             }
           ]
         }
@@ -41,18 +36,13 @@
         "sort": [
           {
             "field": {
-              "Aggregation": {
+              "Measure": {
                 "Expression": {
-                  "Column": {
-                    "Expression": {
-                      "SourceRef": {
-                        "Entity": "fact_change_request"
-                      }
-                    },
-                    "Property": "change_request_key"
+                  "SourceRef": {
+                    "Entity": "MeasuresTable"
                   }
                 },
-                "Function": 0
+                "Property": "TotalChangeRequests"
               }
             },
             "direction": "Descending"
