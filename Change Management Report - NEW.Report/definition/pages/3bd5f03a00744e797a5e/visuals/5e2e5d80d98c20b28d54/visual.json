@@ -5,8 +5,8 @@
     "x": 21.60771704180064,
     "y": 190.35369774919613,
     "z": 0,
-    "height": 473.31189710610931,
-    "width": 979.54983922829581,
+    "height": 473.3118971061093,
+    "width": 979.5498392282958,
     "tabOrder": 0
   },
   "visual": {
@@ -20,13 +20,13 @@
                 "Column": {
                   "Expression": {
                     "SourceRef": {
-                      "Entity": "v_SDD_ChangeManagementReport_ChangeRequests"
+                      "Entity": "fact_change_request"
                     }
                   },
-                  "Property": "ChangeRequestNumber"
+                  "Property": "change_request_code"
                 }
               },
-              "queryRef": "v_SDD_ChangeManagementReport_ChangeRequests.ChangeRequestNumber1",
+              "queryRef": "fact_change_request.ChangeRequestNumber1",
               "nativeQueryRef": "CR Number",
               "displayName": "CR Number"
             },
@@ -35,13 +35,13 @@
                 "Column": {
                   "Expression": {
                     "SourceRef": {
-                      "Entity": "v_SDD_ChangeManagementReport_ChangeRequests"
+                      "Entity": "fact_change_request"
                     }
                   },
-                  "Property": "Title"
+                  "Property": "change_request_title"
                 }
               },
-              "queryRef": "v_SDD_ChangeManagementReport_ChangeRequests.Title1",
+              "queryRef": "fact_change_request.Title1",
               "nativeQueryRef": "Title1"
             },
             {
@@ -49,13 +49,13 @@
                 "Column": {
                   "Expression": {
                     "SourceRef": {
-                      "Entity": "v_SDD_ChangeManagementReport_ChangeRequests"
+                      "Entity": "dim_change_category"
                     }
                   },
-                  "Property": "Category"
+                  "Property": "change_category_name"
                 }
               },
-              "queryRef": "v_SDD_ChangeManagementReport_ChangeRequests.Category1",
+              "queryRef": "fact_change_request.Category1",
               "nativeQueryRef": "Category1"
             },
             {
@@ -63,13 +63,13 @@
                 "Column": {
                   "Expression": {
                     "SourceRef": {
-                      "Entity": "v_SDD_ChangeManagementReport_ChangeRequests"
+                      "Entity": "fact_change_request"
                     }
                   },
-                  "Property": "StartDateTime"
+                  "Property": "scheduled_start_ts"
                 }
               },
-              "queryRef": "v_SDD_ChangeManagementReport_ChangeRequests.StartDateTime1",
+              "queryRef": "fact_change_request.StartDateTime1",
               "nativeQueryRef": "StartDateTime"
             },
             {
@@ -77,13 +77,13 @@
                 "Column": {
                   "Expression": {
                     "SourceRef": {
-                      "Entity": "v_SDD_ChangeManagementReport_ChangeRequests"
+                      "Entity": "fact_change_request"
                     }
                   },
-                  "Property": "EndDateTime"
+                  "Property": "scheduled_end_ts"
                 }
               },
-              "queryRef": "v_SDD_ChangeManagementReport_ChangeRequests.EndDateTime1",
+              "queryRef": "fact_change_request.EndDateTime1",
               "nativeQueryRef": "EndDateTime"
             },
             {
@@ -91,13 +91,13 @@
                 "Column": {
                   "Expression": {
                     "SourceRef": {
-                      "Entity": "v_SDD_ChangeManagementReport_ChangeRequests"
+                      "Entity": "fact_change_request"
                     }
                   },
-                  "Property": "BusinessImpact"
+                  "Property": "has_business_impact"
                 }
               },
-              "queryRef": "v_SDD_ChangeManagementReport_ChangeRequests.BusinessImpact1",
+              "queryRef": "fact_change_request.BusinessImpact1",
               "nativeQueryRef": "BusinessImpact1"
             },
             {
@@ -105,13 +105,13 @@
                 "Column": {
                   "Expression": {
                     "SourceRef": {
-                      "Entity": "v_SDD_ChangeManagementReport_ChangeRequests"
+                      "Entity": "fact_change_request"
                     }
                   },
-                  "Property": "Service Interruption/Outage"
+                  "Property": "has_service_interruption"
                 }
               },
-              "queryRef": "v_SDD_ChangeManagementReport_ChangeRequests.Service Interruption/Outage1",
+              "queryRef": "fact_change_request.Service Interruption/Outage1",
               "nativeQueryRef": "Service Interruption/Outage1"
             },
             {
@@ -119,13 +119,13 @@
                 "Column": {
                   "Expression": {
                     "SourceRef": {
-                      "Entity": "v_SDD_ChangeManagementReport_ChangeRequests"
+                      "Entity": "fact_change_request"
                     }
                   },
                   "Property": "Contact"
                 }
               },
-              "queryRef": "v_SDD_ChangeManagementReport_ChangeRequests.Contact1",
+              "queryRef": "fact_change_request.Contact1",
               "nativeQueryRef": "Contact1"
             }
           ],
@@ -139,10 +139,10 @@
               "Column": {
                 "Expression": {
                   "SourceRef": {
-                    "Entity": "v_SDD_ChangeManagementReport_ChangeRequests"
+                    "Entity": "fact_change_request"
                   }
                 },
-                "Property": "ChangeRequestNumber"
+                "Property": "change_request_code"
               }
             },
             "direction": "Ascending"
@@ -245,7 +245,7 @@
             }
           },
           "selector": {
-            "metadata": "v_SDD_ChangeManagementReport_ChangeRequests.Category1"
+            "metadata": "fact_change_request.Category1"
           }
         },
         {
@@ -259,7 +259,7 @@
             }
           },
           "selector": {
-            "metadata": "v_SDD_ChangeManagementReport_ChangeRequests.Title1"
+            "metadata": "fact_change_request.Title1"
           }
         }
       ]

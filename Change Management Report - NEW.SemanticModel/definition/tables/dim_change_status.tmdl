@@ -1,0 +1,65 @@
+table dim_change_status
+	lineageTag: a6000001-0000-0000-0000-000000000000
+
+	column change_status_key
+		dataType: string
+		lineageTag: a6000001-0000-0000-0000-000000000001
+		summarizeBy: none
+		sourceColumn: change_status_key
+
+		annotation SummarizationSetBy = Automatic
+
+	column change_status_code
+		dataType: string
+		lineageTag: a6000001-0000-0000-0000-000000000002
+		summarizeBy: none
+		sourceColumn: change_status_code
+
+		annotation SummarizationSetBy = Automatic
+
+	column change_status_name
+		dataType: string
+		lineageTag: a6000001-0000-0000-0000-000000000003
+		summarizeBy: none
+		sourceColumn: change_status_name
+
+		annotation SummarizationSetBy = Automatic
+
+	column close_code_name
+		dataType: string
+		lineageTag: a6000001-0000-0000-0000-000000000004
+		summarizeBy: none
+		sourceColumn: close_code_name
+
+		annotation SummarizationSetBy = Automatic
+
+	column change_status_group
+		dataType: string
+		lineageTag: a6000001-0000-0000-0000-000000000005
+		summarizeBy: none
+		sourceColumn: change_status_group
+
+		annotation SummarizationSetBy = Automatic
+
+	column is_terminal
+		dataType: int64
+		formatString: 0
+		lineageTag: a6000001-0000-0000-0000-000000000006
+		summarizeBy: none
+		sourceColumn: is_terminal
+
+		annotation SummarizationSetBy = Automatic
+
+	partition dim_change_status = m
+		mode: import
+		source =
+				let
+				    Source = Databricks.Catalogs("adb-7405617881191841.1.azuredatabricks.net", "/sql/1.0/warehouses/bd2d54335d56667d", []),
+				    tst_modelled = Source{[Name="tst", Kind="Catalog"]}[Data],
+				    modelled_Schema = tst_modelled{[Name="modelled", Kind="Schema"]}[Data],
+				    dim_change_status_Table = modelled_Schema{[Name="dim_change_status", Kind="Table"]}[Data]
+				in
+				    dim_change_status_Table
+
+	annotation PBI_ResultType = Table
+

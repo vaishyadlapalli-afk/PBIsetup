@@ -20,13 +20,13 @@
                 "Column": {
                   "Expression": {
                     "SourceRef": {
-                      "Entity": "v_SDD_ChangeManagementReport_ChangeRequests"
+                      "Entity": "fact_change_request"
                     }
                   },
-                  "Property": "EndDateTime"
+                  "Property": "scheduled_end_ts"
                 }
               },
-              "queryRef": "v_SDD_ChangeManagementReport_ChangeRequests.EndDateTime1",
+              "queryRef": "fact_change_request.EndDateTime1",
               "nativeQueryRef": "EndDateTime",
               "active": true
             }
@@ -40,10 +40,10 @@
               "Column": {
                 "Expression": {
                   "SourceRef": {
-                    "Entity": "v_SDD_ChangeManagementReport_ChangeRequests"
+                    "Entity": "fact_change_request"
                   }
                 },
-                "Property": "EndDateTime"
+                "Property": "scheduled_end_ts"
               }
             },
             "direction": "Ascending"

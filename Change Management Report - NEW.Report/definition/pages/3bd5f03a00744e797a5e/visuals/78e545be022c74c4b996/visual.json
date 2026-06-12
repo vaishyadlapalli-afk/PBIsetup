@@ -20,13 +20,13 @@
                 "Column": {
                   "Expression": {
                     "SourceRef": {
-                      "Entity": "v_SDD_ChangeManagementReport_ChangeRequests"
+                      "Entity": "fact_change_request"
                     }
                   },
-                  "Property": "Service Interruption/Outage"
+                  "Property": "has_service_interruption"
                 }
               },
-              "queryRef": "v_SDD_ChangeManagementReport_ChangeRequests.Service Interruption/Outage1",
+              "queryRef": "fact_change_request.Service Interruption/Outage1",
               "nativeQueryRef": "Service Interruption/Outage1",
               "active": true
             }

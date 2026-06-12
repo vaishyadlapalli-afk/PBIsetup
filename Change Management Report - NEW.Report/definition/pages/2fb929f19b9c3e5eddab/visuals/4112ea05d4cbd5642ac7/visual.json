@@ -3,10 +3,10 @@
   "name": "4112ea05d4cbd5642ac7",
   "position": {
     "x": 15.960591133004927,
-    "y": 346.69950738916259,
+    "y": 346.6995073891626,
     "z": 7000,
     "height": 162.26600985221674,
-    "width": 297.93103448275861,
+    "width": 297.9310344827586,
     "tabOrder": 7000
   },
   "visual": {
@@ -20,13 +20,13 @@
                 "Column": {
                   "Expression": {
                     "SourceRef": {
-                      "Entity": "v_SDD_ChangeManagementReport_ChangeRequests"
+                      "Entity": "dim_change_type"
                     }
                   },
-                  "Property": "ChangeType"
+                  "Property": "change_type_name"
                 }
               },
-              "queryRef": "v_SDD_ChangeManagementReport_ChangeRequests.ChangeType1",
+              "queryRef": "fact_change_request.ChangeType1",
               "nativeQueryRef": "ChangeType1",
               "active": true
             }
@@ -41,16 +41,16 @@
                     "Column": {
                       "Expression": {
                         "SourceRef": {
-                          "Entity": "v_SDD_ChangeManagementReport_ChangeRequests"
+                          "Entity": "fact_change_request"
                         }
                       },
-                      "Property": "Total"
+                      "Property": "change_request_key"
                     }
                   },
                   "Function": 0
                 }
               },
-              "queryRef": "Sum(v_SDD_ChangeManagementReport_ChangeRequests.Total)",
+              "queryRef": "Sum(fact_change_request.Total)",
               "nativeQueryRef": "Sum of Total"
             }
           ]
@@ -65,10 +65,10 @@
                   "Column": {
                     "Expression": {
                       "SourceRef": {
-                        "Entity": "v_SDD_ChangeManagementReport_ChangeRequests"
+                        "Entity": "fact_change_request"
                       }
                     },
-                    "Property": "Total"
+                    "Property": "change_request_key"
                   }
                 },
                 "Function": 0

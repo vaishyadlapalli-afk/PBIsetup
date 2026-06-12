@@ -3,9 +3,9 @@
   "name": "dad539f582ac85957c87",
   "position": {
     "x": 1025.8520900321544,
-    "y": 498.00643086816717,
+    "y": 498.0064308681672,
     "z": 8000,
-    "height": 68.938906752411569,
+    "height": 68.93890675241157,
     "width": 250.032154340836,
     "tabOrder": 8000
   },
@@ -20,13 +20,13 @@
                 "Column": {
                   "Expression": {
                     "SourceRef": {
-                      "Entity": "v_SDD_ChangeManagementReport_ChangeRequests"
+                      "Entity": "dim_change_risk"
                     }
                   },
-                  "Property": "Risk"
+                  "Property": "change_risk_name"
                 }
               },
-              "queryRef": "v_SDD_ChangeManagementReport_ChangeRequests.Risk1",
+              "queryRef": "fact_change_request.Risk1",
               "nativeQueryRef": "Risk1",
               "active": true
             }

@@ -1,0 +1,40 @@
+table dim_change_category
+	lineageTag: a4000001-0000-0000-0000-000000000000
+
+	column change_category_key
+		dataType: string
+		lineageTag: a4000001-0000-0000-0000-000000000001
+		summarizeBy: none
+		sourceColumn: change_category_key
+
+		annotation SummarizationSetBy = Automatic
+
+	column change_category_code
+		dataType: string
+		lineageTag: a4000001-0000-0000-0000-000000000002
+		summarizeBy: none
+		sourceColumn: change_category_code
+
+		annotation SummarizationSetBy = Automatic
+
+	column change_category_name
+		dataType: string
+		lineageTag: a4000001-0000-0000-0000-000000000003
+		summarizeBy: none
+		sourceColumn: change_category_name
+
+		annotation SummarizationSetBy = Automatic
+
+	partition dim_change_category = m
+		mode: import
+		source =
+				let
+				    Source = Databricks.Catalogs("adb-7405617881191841.1.azuredatabricks.net", "/sql/1.0/warehouses/bd2d54335d56667d", []),
+				    tst_modelled = Source{[Name="tst", Kind="Catalog"]}[Data],
+				    modelled_Schema = tst_modelled{[Name="modelled", Kind="Schema"]}[Data],
+				    dim_change_category_Table = modelled_Schema{[Name="dim_change_category", Kind="Table"]}[Data]
+				in
+				    dim_change_category_Table
+
+	annotation PBI_ResultType = Table
+

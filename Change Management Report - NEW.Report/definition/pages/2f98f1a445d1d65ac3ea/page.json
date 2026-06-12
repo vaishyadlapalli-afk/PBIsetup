@@ -13,10 +13,10 @@
           "Column": {
             "Expression": {
               "SourceRef": {
-                "Entity": "v_SDD_ChangeManagementReport_ChangeRequests"
+                "Entity": "dim_change_status"
               }
             },
-            "Property": "Req_Status_Grouped"
+            "Property": "change_status_group"
           }
         },
         "type": "Categorical",
@@ -25,7 +25,7 @@
           "From": [
             {
               "Name": "v",
-              "Entity": "v_SDD_ChangeManagementReport_ChangeRequests",
+              "Entity": "dim_change_status",
               "Type": 0
             }
           ],
@@ -41,7 +41,7 @@
                             "Source": "v"
                           }
                         },
-                        "Property": "Req_Status_Grouped"
+                        "Property": "change_status_group"
                       }
                     }
                   ],

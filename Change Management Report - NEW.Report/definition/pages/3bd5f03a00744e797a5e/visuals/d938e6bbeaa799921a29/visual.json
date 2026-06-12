@@ -20,13 +20,13 @@
                 "Column": {
                   "Expression": {
                     "SourceRef": {
-                      "Entity": "v_SDD_ChangeManagementReport_ChangeRequests"
+                      "Entity": "fact_change_request"
                     }
                   },
-                  "Property": "ChangeRequestNumber"
+                  "Property": "change_request_code"
                 }
               },
-              "queryRef": "v_SDD_ChangeManagementReport_ChangeRequests.ChangeRequestNumber1",
+              "queryRef": "fact_change_request.ChangeRequestNumber1",
               "nativeQueryRef": "ChangeRequestNumber",
               "active": true
             }

@@ -28,10 +28,10 @@
           "Column": {
             "Expression": {
               "SourceRef": {
-                "Entity": "v_SDD_ChangeManagementReport_ChangeRequests"
+                "Entity": "dim_date"
               }
             },
-            "Property": "FinancialYear"
+            "Property": "financial_year_long_name"
           }
         },
         "type": "Categorical",
@@ -39,8 +39,8 @@
           "Version": 2,
           "From": [
             {
-              "Name": "v",
-              "Entity": "v_SDD_ChangeManagementReport_ChangeRequests",
+              "Name": "d",
+              "Entity": "dim_date",
               "Type": 0
             }
           ],
@@ -49,27 +49,19 @@
               "Condition": {
                 "Not": {
                   "Expression": {
-                    "In": {
-                      "Expressions": [
+                    "FunctionCall": {
+                      "Function": "IsBlank",
+                      "FunctionParameters": [
                         {
                           "Column": {
                             "Expression": {
                               "SourceRef": {
-                                "Source": "v"
+                                "Source": "d"
                               }
                             },
-                            "Property": "FinancialYear"
+                            "Property": "financial_year_long_name"
                           }
                         }
-                      ],
-                      "Values": [
-                        [
-                          {
-                            "Literal": {
-                              "Value": "'-1 - 0'"
-                            }
-                          }
-                        ]
                       ]
                     }
                   }
@@ -78,22 +70,7 @@
             }
           ]
         },
-        "howCreated": "User",
-        "objects": {
-          "general": [
-            {
-              "properties": {
-                "isInvertedSelectionMode": {
-                  "expr": {
-                    "Literal": {
-                      "Value": "true"
-                    }
-                  }
-                }
-              }
-            }
-          ]
-        }
+        "howCreated": "User"
       }
     ]
   },

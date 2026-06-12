@@ -20,13 +20,13 @@
                 "Column": {
                   "Expression": {
                     "SourceRef": {
-                      "Entity": "v_SDD_ChangeManagementReport_ChangeRequests"
+                      "Entity": "dim_change_risk"
                     }
                   },
-                  "Property": "Risk"
+                  "Property": "change_risk_name"
                 }
               },
-              "queryRef": "v_SDD_ChangeManagementReport_ChangeRequests.Risk1",
+              "queryRef": "fact_change_request.Risk1",
               "nativeQueryRef": "Risk1",
               "active": true
             }
@@ -41,16 +41,16 @@
                     "Column": {
                       "Expression": {
                         "SourceRef": {
-                          "Entity": "v_SDD_ChangeManagementReport_ChangeRequests"
+                          "Entity": "fact_change_request"
                         }
                       },
-                      "Property": "Total"
+                      "Property": "change_request_key"
                     }
                   },
                   "Function": 0
                 }
               },
-              "queryRef": "Sum(v_SDD_ChangeManagementReport_ChangeRequests.Total)1",
+              "queryRef": "Sum(fact_change_request.Total)1",
               "nativeQueryRef": "Sum of Total1"
             }
           ]
@@ -65,10 +65,10 @@
                   "Column": {
                     "Expression": {
                       "SourceRef": {
-                        "Entity": "v_SDD_ChangeManagementReport_ChangeRequests"
+                        "Entity": "fact_change_request"
                       }
                     },
-                    "Property": "Total"
+                    "Property": "change_request_key"
                   }
                 },
                 "Function": 0

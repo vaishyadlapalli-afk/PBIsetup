@@ -105,7 +105,7 @@ table LocalDateTable_bbd0598c-145c-4277-bed9-77ffbe67fff9
 
 	partition LocalDateTable_bbd0598c-145c-4277-bed9-77ffbe67fff9 = calculated
 		mode: import
-		source = Calendar(Date(Year(MIN('v_SDD_ChangeManagementReport_ChangeRequests'[EndDateTime])), 1, 1), Date(Year(MAX('v_SDD_ChangeManagementReport_ChangeRequests'[EndDateTime])), 12, 31))
+		source = Calendar(Date(Year(MIN('fact_change_request'[scheduled_end_ts])), 1, 1), Date(Year(MAX('fact_change_request'[scheduled_end_ts])), 12, 31))
 
 	annotation __PBI_LocalDateTable = true
 

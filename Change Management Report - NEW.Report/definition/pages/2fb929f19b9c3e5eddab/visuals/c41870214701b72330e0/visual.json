@@ -5,7 +5,7 @@
     "x": 457.53694581280786,
     "y": 299.70443349753697,
     "z": 14000,
-    "height": 45.221674876847288,
+    "height": 45.22167487684729,
     "width": 49.6551724137931,
     "tabOrder": 14000
   },
@@ -22,16 +22,16 @@
                     "Column": {
                       "Expression": {
                         "SourceRef": {
-                          "Entity": "v_SDD_ChangeManagementReport_ChangeRequests"
+                          "Entity": "fact_change_request"
                         }
                       },
-                      "Property": "Total"
+                      "Property": "change_request_key"
                     }
                   },
                   "Function": 0
                 }
               },
-              "queryRef": "Sum(v_SDD_ChangeManagementReport_ChangeRequests.Total)",
+              "queryRef": "Sum(fact_change_request.Total)",
               "nativeQueryRef": "Sum of Total1"
             }
           ]
@@ -46,10 +46,10 @@
                   "Column": {
                     "Expression": {
                       "SourceRef": {
-                        "Entity": "v_SDD_ChangeManagementReport_ChangeRequests"
+                        "Entity": "fact_change_request"
                       }
                     },
-                    "Property": "Total"
+                    "Property": "change_request_key"
                   }
                 },
                 "Function": 0
@@ -148,10 +148,10 @@
           "Column": {
             "Expression": {
               "SourceRef": {
-                "Entity": "v_SDD_ChangeManagementReport_ChangeRequests"
+                "Entity": "dim_change_type"
               }
             },
-            "Property": "ChangeType"
+            "Property": "change_type_name"
           }
         },
         "type": "Categorical",
@@ -160,7 +160,7 @@
           "From": [
             {
               "Name": "v",
-              "Entity": "v_SDD_ChangeManagementReport_ChangeRequests",
+              "Entity": "dim_change_type",
               "Type": 0
             }
           ],
@@ -176,7 +176,7 @@
                             "Source": "v"
                           }
                         },
-                        "Property": "ChangeType"
+                        "Property": "change_type_name"
                       }
                     }
                   ],

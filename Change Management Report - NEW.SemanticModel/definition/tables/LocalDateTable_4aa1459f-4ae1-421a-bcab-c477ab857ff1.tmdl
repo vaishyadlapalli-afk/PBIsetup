@@ -105,7 +105,7 @@ table LocalDateTable_4aa1459f-4ae1-421a-bcab-c477ab857ff1
 
 	partition LocalDateTable_4aa1459f-4ae1-421a-bcab-c477ab857ff1 = calculated
 		mode: import
-		source = Calendar(Date(Year(MIN('v_SDD_ChangeManagementReport_ChangeRequests'[StartDateTime])), 1, 1), Date(Year(MAX('v_SDD_ChangeManagementReport_ChangeRequests'[StartDateTime])), 12, 31))
+		source = Calendar(Date(Year(MIN('fact_change_request'[scheduled_start_ts])), 1, 1), Date(Year(MAX('fact_change_request'[scheduled_start_ts])), 12, 31))
 
 	annotation __PBI_LocalDateTable = true
 

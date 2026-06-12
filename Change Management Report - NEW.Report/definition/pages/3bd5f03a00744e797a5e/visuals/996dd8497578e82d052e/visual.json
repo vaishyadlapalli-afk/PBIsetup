@@ -20,13 +20,13 @@
                 "Column": {
                   "Expression": {
                     "SourceRef": {
-                      "Entity": "v_SDD_ChangeManagementReport_ChangeRequests"
+                      "Entity": "fact_change_request"
                     }
                   },
-                  "Property": "BusinessImpact"
+                  "Property": "has_business_impact"
                 }
               },
-              "queryRef": "v_SDD_ChangeManagementReport_ChangeRequests.BusinessImpact1",
+              "queryRef": "fact_change_request.BusinessImpact1",
               "nativeQueryRef": "BusinessImpact1",
               "active": true
             }

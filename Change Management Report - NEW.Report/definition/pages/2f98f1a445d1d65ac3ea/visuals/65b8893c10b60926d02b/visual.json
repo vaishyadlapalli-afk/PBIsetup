@@ -3,10 +3,10 @@
   "name": "65b8893c10b60926d02b",
   "position": {
     "x": 216.58206429780034,
-    "y": 85.549915397631125,
+    "y": 85.54991539763112,
     "z": 14000,
-    "height": 53.062605752961083,
-    "width": 563.11336717428082,
+    "height": 53.06260575296108,
+    "width": 563.1133671742808,
     "tabOrder": 14000
   },
   "visual": {
@@ -20,13 +20,13 @@
                 "Column": {
                   "Expression": {
                     "SourceRef": {
-                      "Entity": "v_SDD_ChangeManagementReport_ChangeRequests"
+                      "Entity": "dim_date"
                     }
                   },
-                  "Property": "FinancialYear"
+                  "Property": "financial_year_long_name"
                 }
               },
-              "queryRef": "v_SDD_ChangeManagementReport_ChangeRequests.Financial Year",
+              "queryRef": "fact_change_request.Financial Year",
               "nativeQueryRef": "Financial Year",
               "active": true
             }
@@ -64,7 +64,7 @@
                 "From": [
                   {
                     "Name": "v",
-                    "Entity": "v_SDD_ChangeManagementReport_ChangeRequests",
+                    "Entity": "dim_date",
                     "Type": 0
                   }
                 ],
@@ -80,7 +80,7 @@
                                   "Source": "v"
                                 }
                               },
-                              "Property": "FinancialYear"
+                              "Property": "financial_year_long_name"
                             }
                           }
                         ],

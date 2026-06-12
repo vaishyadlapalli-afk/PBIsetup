@@ -3,10 +3,10 @@
   "name": "dea8c543dde05834412d",
   "position": {
     "x": 21.658206429780034,
-    "y": 77.969543147208114,
+    "y": 77.96954314720811,
     "z": 10000,
     "height": 103.95939086294416,
-    "width": 972.45346869712353,
+    "width": 972.4534686971235,
     "tabOrder": 10000
   },
   "visual": {
@@ -20,13 +20,13 @@
                 "Column": {
                   "Expression": {
                     "SourceRef": {
-                      "Entity": "v_SDD_ChangeManagementReport_ChangeRequests"
+                      "Entity": "fact_change_request"
                     }
                   },
-                  "Property": "StartDate"
+                  "Property": "scheduled_start_ts"
                 }
               },
-              "queryRef": "v_SDD_ChangeManagementReport_ChangeRequests.StartDate",
+              "queryRef": "fact_change_request.StartDate",
               "nativeQueryRef": "StartDate"
             }
           ]
@@ -39,10 +39,10 @@
               "Column": {
                 "Expression": {
                   "SourceRef": {
-                    "Entity": "v_SDD_ChangeManagementReport_ChangeRequests"
+                    "Entity": "fact_change_request"
                   }
                 },
-                "Property": "StartDate"
+                "Property": "scheduled_start_ts"
               }
             },
             "direction": "Ascending"
@@ -142,7 +142,7 @@
                 "From": [
                   {
                     "Name": "v",
-                    "Entity": "v_SDD_ChangeManagementReport_ChangeRequests",
+                    "Entity": "fact_change_request",
                     "Type": 0
                   }
                 ],
@@ -160,7 +160,7 @@
                                     "Source": "v"
                                   }
                                 },
-                                "Property": "StartDate"
+                                "Property": "scheduled_start_ts"
                               }
                             },
                             "Right": {
@@ -185,7 +185,7 @@
                                     "Source": "v"
                                   }
                                 },
-                                "Property": "StartDate"
+                                "Property": "scheduled_start_ts"
                               }
                             },
                             "Right": {

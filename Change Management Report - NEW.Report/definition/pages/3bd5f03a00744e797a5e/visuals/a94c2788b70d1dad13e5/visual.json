@@ -20,13 +20,13 @@
                 "Column": {
                   "Expression": {
                     "SourceRef": {
-                      "Entity": "v_SDD_ChangeManagementReport_ChangeRequests"
+                      "Entity": "dim_change_category"
                     }
                   },
-                  "Property": "Category"
+                  "Property": "change_category_name"
                 }
               },
-              "queryRef": "v_SDD_ChangeManagementReport_ChangeRequests.Category1",
+              "queryRef": "fact_change_request.Category1",
               "nativeQueryRef": "Category1",
               "active": true
             }

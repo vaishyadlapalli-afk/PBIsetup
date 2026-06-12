@@ -1,84 +1,67 @@
-relationship 963fc802-198f-43c3-8d00-c4e68dd29603
-	joinOnDateBehavior: datePartOnly
-	fromColumn: v_datedim.FullDateTime
-	toColumn: LocalDateTable_ad61c0e8-12d9-4684-86de-e29a69ca64f3.Date
-
 relationship e5c0e279-490b-4d87-bd8e-da3d4c269608
 	joinOnDateBehavior: datePartOnly
-	fromColumn: v_datedim.FullDate
+	fromColumn: dim_date.calendar_date
 	toColumn: LocalDateTable_00fa45d8-cc06-4fc2-978e-60941ab18370.Date
 
-relationship a1d8974e-5760-43eb-89a9-8b31b51252c4
+relationship cab65b34-c229-40ae-a7b4-5b99bf611c30
 	joinOnDateBehavior: datePartOnly
-	fromColumn: v_datedim.CalendarFirstDayOfMonth
-	toColumn: LocalDateTable_de805c9a-abed-47ac-a495-5a539a04a0c8.Date
+	fromColumn: fact_change_request.scheduled_start_ts
+	toColumn: LocalDateTable_4aa1459f-4ae1-421a-bcab-c477ab857ff1.Date
 
-relationship 51949a2b-08d1-4a1b-b3c0-ed2a6917fad0
+relationship 92b76926-c1b1-45d0-8d22-a81f24185fdf
 	joinOnDateBehavior: datePartOnly
-	fromColumn: v_datedim.CalendarLastDayOfMonth
-	toColumn: LocalDateTable_8364d685-d8c2-474e-a9fc-909683f161d8.Date
-
-relationship cd269c4f-90cb-4b81-ab46-431125152e5f
-	joinOnDateBehavior: datePartOnly
-	fromColumn: v_datedim.CalendarFirstDayOfQuarter
-	toColumn: LocalDateTable_a1b601be-4e50-411e-90ad-101415988a3c.Date
-
-relationship e453acbb-6693-4954-b65f-f2159f4199f7
-	joinOnDateBehavior: datePartOnly
-	fromColumn: v_datedim.CalendarLastDayOfQuarter
-	toColumn: LocalDateTable_f0e39899-a10e-48c0-bec2-c2bced53c3f6.Date
-
-relationship 8c1672e0-9be5-415c-b2ff-3ac1d1d99065
-	joinOnDateBehavior: datePartOnly
-	fromColumn: v_datedim.CalendarFirstDayOfYear
-	toColumn: LocalDateTable_b84f5cfb-618a-4918-9d3f-11d92f8bf327.Date
-
-relationship 47d8cf34-0d14-4d8a-9530-bfa2d0949519
-	joinOnDateBehavior: datePartOnly
-	fromColumn: v_datedim.CalendarLastDayOfYear
-	toColumn: LocalDateTable_c6fbc19e-7ae5-4e3f-90aa-7c95a98ead03.Date
-
-relationship 7e325809-af88-4529-ae50-7dadb5f347ab
-	joinOnDateBehavior: datePartOnly
-	fromColumn: v_datedim.FinancialFirstDayOfQuarter
-	toColumn: LocalDateTable_6136995d-684f-4063-a40d-bc47e1f41651.Date
-
-relationship 0a89750d-06ce-42b5-b94d-13bfc8e7ba71
-	joinOnDateBehavior: datePartOnly
-	fromColumn: v_datedim.FinancialLastDayOfQuarter
-	toColumn: LocalDateTable_2cbf849d-a843-4120-9746-1590f7e6de7e.Date
-
-relationship 24877845-529b-449e-b147-69f303d652a7
-	joinOnDateBehavior: datePartOnly
-	fromColumn: v_datedim.FinancialFirstDayOfYear
-	toColumn: LocalDateTable_b5ddebb5-9688-4f04-9d4f-bd422212f2f3.Date
+	fromColumn: fact_change_request.scheduled_end_ts
+	toColumn: LocalDateTable_bbd0598c-145c-4277-bed9-77ffbe67fff9.Date
 
 relationship 057de226-13c2-4c81-a65e-25f1fc50f0e0
 	joinOnDateBehavior: datePartOnly
 	fromColumn: DataRefresh.RefreshTimestamp
 	toColumn: LocalDateTable_aba4b7a9-3167-412c-a408-cf85d9829960.Date
 
-relationship cab65b34-c229-40ae-a7b4-5b99bf611c30
-	joinOnDateBehavior: datePartOnly
-	fromColumn: v_SDD_ChangeManagementReport_ChangeRequests.StartDateTime
-	toColumn: LocalDateTable_4aa1459f-4ae1-421a-bcab-c477ab857ff1.Date
+relationship b1000001-0000-0000-0000-000000000001
+	fromColumn: fact_change_request.opened_date_key
+	toColumn: dim_date.date_key
 
-relationship 6e8dd667-152b-4def-af22-74f5006e0f67
-	joinOnDateBehavior: datePartOnly
-	fromColumn: v_SDD_ChangeManagementReport_ChangeRequests.StartDate
-	toColumn: LocalDateTable_1eca48a7-7419-4ddb-8b09-69c7b6230bee.Date
+relationship b1000001-0000-0000-0000-000000000002
+	isActive: false
+	fromColumn: fact_tech_incident.opened_date_key
+	toColumn: dim_date.date_key
 
-relationship 92b76926-c1b1-45d0-8d22-a81f24185fdf
-	joinOnDateBehavior: datePartOnly
-	fromColumn: v_SDD_ChangeManagementReport_ChangeRequests.EndDateTime
-	toColumn: LocalDateTable_bbd0598c-145c-4277-bed9-77ffbe67fff9.Date
+relationship b1000001-0000-0000-0000-000000000003
+	fromColumn: fact_change_request.change_type_key
+	toColumn: dim_change_type.change_type_key
 
-relationship 20bb67bf-6588-4857-af81-baf8885cd654
-	joinOnDateBehavior: datePartOnly
-	fromColumn: v_SDD_ChangeManagementReport_ChangeRequests.EndDate
-	toColumn: LocalDateTable_f50f5fe1-9b15-450a-a21f-fc8240fd3879.Date
+relationship b1000001-0000-0000-0000-000000000004
+	isActive: false
+	fromColumn: fact_tech_incident.cr_change_type_key
+	toColumn: dim_change_type.change_type_key
+
+relationship b1000001-0000-0000-0000-000000000005
+	fromColumn: fact_change_request.change_category_key
+	toColumn: dim_change_category.change_category_key
+
+relationship b1000001-0000-0000-0000-000000000006
+	fromColumn: fact_change_request.change_risk_key
+	toColumn: dim_change_risk.change_risk_key
+
+relationship b1000001-0000-0000-0000-000000000007
+	fromColumn: fact_change_request.change_status_key
+	toColumn: dim_change_status.change_status_key
+
+relationship b1000001-0000-0000-0000-000000000008
+	fromColumn: fact_change_request.impact_key
+	toColumn: dim_tech_impact.impact_key
+
+relationship b1000001-0000-0000-0000-000000000009
+	isActive: false
+	fromColumn: fact_tech_incident.impact_key
+	toColumn: dim_tech_impact.impact_key
+
+relationship b1000001-0000-0000-0000-000000000010
+	fromColumn: fact_tech_incident.incident_priority_key
+	toColumn: dim_incident_priority.incident_priority_key
 
 relationship AutoDetected_6571b50d-d6f9-437e-a92e-cc7591c8f812
-	fromColumn: v_SDD_ChangeManagementReport_LinkedIncidents.ChangeRequestNumber
-	toColumn: v_SDD_ChangeManagementReport_ChangeRequests.ChangeRequestNumber
+	fromColumn: fact_tech_incident.change_request_code
+	toColumn: fact_change_request.change_request_code
 

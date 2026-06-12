@@ -1,0 +1,170 @@
+table fact_change_request
+	lineageTag: 1f7c1194-b29c-4c20-802a-e89a9dbda770
+
+	column change_request_key
+		dataType: string
+		lineageTag: a1000001-0000-0000-0000-000000000001
+		summarizeBy: none
+		sourceColumn: change_request_key
+
+		annotation SummarizationSetBy = Automatic
+
+	column change_request_code
+		dataType: string
+		lineageTag: a1000001-0000-0000-0000-000000000002
+		summarizeBy: none
+		sourceColumn: change_request_code
+
+		annotation SummarizationSetBy = Automatic
+
+	column change_request_number
+		dataType: string
+		lineageTag: a1000001-0000-0000-0000-000000000003
+		summarizeBy: none
+		sourceColumn: change_request_number
+
+		annotation SummarizationSetBy = Automatic
+
+	column change_request_title
+		dataType: string
+		lineageTag: a1000001-0000-0000-0000-000000000004
+		summarizeBy: none
+		sourceColumn: change_request_title
+
+		annotation SummarizationSetBy = Automatic
+
+	column change_type_key
+		dataType: string
+		lineageTag: a1000001-0000-0000-0000-000000000005
+		summarizeBy: none
+		sourceColumn: change_type_key
+
+		annotation SummarizationSetBy = Automatic
+
+	column change_category_key
+		dataType: string
+		lineageTag: a1000001-0000-0000-0000-000000000006
+		summarizeBy: none
+		sourceColumn: change_category_key
+
+		annotation SummarizationSetBy = Automatic
+
+	column change_risk_key
+		dataType: string
+		lineageTag: a1000001-0000-0000-0000-000000000007
+		summarizeBy: none
+		sourceColumn: change_risk_key
+
+		annotation SummarizationSetBy = Automatic
+
+	column change_status_key
+		dataType: string
+		lineageTag: a1000001-0000-0000-0000-000000000008
+		summarizeBy: none
+		sourceColumn: change_status_key
+
+		annotation SummarizationSetBy = Automatic
+
+	column impact_key
+		dataType: string
+		lineageTag: a1000001-0000-0000-0000-000000000009
+		summarizeBy: none
+		sourceColumn: impact_key
+
+		annotation SummarizationSetBy = Automatic
+
+	column opened_date_key
+		dataType: int64
+		formatString: 0
+		lineageTag: a1000001-0000-0000-0000-000000000010
+		summarizeBy: none
+		sourceColumn: opened_date_key
+
+		annotation SummarizationSetBy = Automatic
+
+	column opened_ts
+		dataType: dateTime
+		formatString: General Date
+		lineageTag: a1000001-0000-0000-0000-000000000011
+		summarizeBy: none
+		sourceColumn: opened_ts
+
+		annotation SummarizationSetBy = Automatic
+
+	column scheduled_start_ts
+		dataType: dateTime
+		formatString: General Date
+		lineageTag: a1000001-0000-0000-0000-000000000012
+		summarizeBy: none
+		sourceColumn: scheduled_start_ts
+
+		variation Variation
+			isDefault
+			relationship: cab65b34-c229-40ae-a7b4-5b99bf611c30
+			defaultHierarchy: LocalDateTable_4aa1459f-4ae1-421a-bcab-c477ab857ff1.'Date Hierarchy'
+
+		annotation SummarizationSetBy = Automatic
+
+	column scheduled_end_ts
+		dataType: dateTime
+		formatString: General Date
+		lineageTag: a1000001-0000-0000-0000-000000000013
+		summarizeBy: none
+		sourceColumn: scheduled_end_ts
+
+		variation Variation
+			isDefault
+			relationship: 92b76926-c1b1-45d0-8d22-a81f24185fdf
+			defaultHierarchy: LocalDateTable_bbd0598c-145c-4277-bed9-77ffbe67fff9.'Date Hierarchy'
+
+		annotation SummarizationSetBy = Automatic
+
+	column closed_ts
+		dataType: dateTime
+		formatString: General Date
+		lineageTag: a1000001-0000-0000-0000-000000000014
+		summarizeBy: none
+		sourceColumn: closed_ts
+
+		annotation SummarizationSetBy = Automatic
+
+	column has_service_interruption
+		dataType: int64
+		formatString: 0
+		lineageTag: a1000001-0000-0000-0000-000000000015
+		summarizeBy: sum
+		sourceColumn: has_service_interruption
+
+		annotation SummarizationSetBy = Automatic
+
+	column has_business_impact
+		dataType: int64
+		formatString: 0
+		lineageTag: a1000001-0000-0000-0000-000000000016
+		summarizeBy: sum
+		sourceColumn: has_business_impact
+
+		annotation SummarizationSetBy = Automatic
+
+	column has_caused_incident
+		dataType: int64
+		formatString: 0
+		lineageTag: a1000001-0000-0000-0000-000000000017
+		summarizeBy: sum
+		sourceColumn: has_caused_incident
+
+		annotation SummarizationSetBy = Automatic
+
+	partition fact_change_request = m
+		mode: import
+		source =
+				let
+				    Source = Databricks.Catalogs("adb-7405617881191841.1.azuredatabricks.net", "/sql/1.0/warehouses/bd2d54335d56667d", []),
+				    tst_modelled = Source{[Name="tst", Kind="Catalog"]}[Data],
+				    modelled_Schema = tst_modelled{[Name="modelled", Kind="Schema"]}[Data],
+				    fact_change_request_Table = modelled_Schema{[Name="fact_change_request", Kind="Table"]}[Data]
+				in
+				    fact_change_request_Table
+
+	annotation PBI_ResultType = Table
+

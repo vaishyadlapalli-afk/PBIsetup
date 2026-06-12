@@ -2,10 +2,10 @@
   "$schema": "https://developer.microsoft.com/json-schemas/fabric/item/report/definition/visualContainer/2.9.0/schema.json",
   "name": "326d7aff24ed507d4721",
   "position": {
-    "x": 773.20197044334975,
-    "y": 303.25123152709358,
+    "x": 773.2019704433498,
+    "y": 303.2512315270936,
     "z": 16000,
-    "height": 39.014778325123153,
+    "height": 39.01477832512315,
     "width": 49.6551724137931,
     "tabOrder": 16000
   },
@@ -22,16 +22,16 @@
                     "Column": {
                       "Expression": {
                         "SourceRef": {
-                          "Entity": "v_SDD_ChangeManagementReport_ChangeRequests"
+                          "Entity": "fact_change_request"
                         }
                       },
-                      "Property": "Total"
+                      "Property": "change_request_key"
                     }
                   },
                   "Function": 0
                 }
               },
-              "queryRef": "Sum(v_SDD_ChangeManagementReport_ChangeRequests.Total)",
+              "queryRef": "Sum(fact_change_request.Total)",
               "nativeQueryRef": "Sum of Total1"
             }
           ]
@@ -46,10 +46,10 @@
                   "Column": {
                     "Expression": {
                       "SourceRef": {
-                        "Entity": "v_SDD_ChangeManagementReport_ChangeRequests"
+                        "Entity": "fact_change_request"
                       }
                     },
-                    "Property": "Total"
+                    "Property": "change_request_key"
                   }
                 },
                 "Function": 0
@@ -175,10 +175,10 @@
           "Column": {
             "Expression": {
               "SourceRef": {
-                "Entity": "v_SDD_ChangeManagementReport_ChangeRequests"
+                "Entity": "dim_change_type"
               }
             },
-            "Property": "ChangeType"
+            "Property": "change_type_name"
           }
         },
         "type": "Categorical",
@@ -187,7 +187,7 @@
           "From": [
             {
               "Name": "v",
-              "Entity": "v_SDD_ChangeManagementReport_ChangeRequests",
+              "Entity": "dim_change_type",
               "Type": 0
             }
           ],
@@ -203,7 +203,7 @@
                             "Source": "v"
                           }
                         },
-                        "Property": "ChangeType"
+                        "Property": "change_type_name"
                       }
                     }
                   ],

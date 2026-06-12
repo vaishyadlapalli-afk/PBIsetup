@@ -2,8 +2,8 @@
   "$schema": "https://developer.microsoft.com/json-schemas/fabric/item/report/definition/visualContainer/2.9.0/schema.json",
   "name": "e191bc64bd0746eed165",
   "position": {
-    "x": 779.55555555555554,
-    "y": 59.555555555555557,
+    "x": 779.5555555555555,
+    "y": 59.55555555555556,
     "z": 12000,
     "height": 111.11111111111111,
     "width": 500.44444444444446,
@@ -23,10 +23,10 @@
                       "Entity": "MeasuresTable"
                     }
                   },
-                  "Property": "TotalChangeRequestss"
+                  "Property": "TotalChangeRequests"
                 }
               },
-              "queryRef": "MeasuresTable.TotalChangeRequestss",
+              "queryRef": "MeasuresTable.TotalChangeRequests",
               "nativeQueryRef": "Change Requests",
               "displayName": "Change Requests"
             },
@@ -88,7 +88,7 @@
                     "Entity": "MeasuresTable"
                   }
                 },
-                "Property": "TotalChangeRequestss"
+                "Property": "TotalChangeRequests"
               }
             },
             "direction": "Descending"
@@ -145,7 +145,7 @@
             }
           },
           "selector": {
-            "metadata": "MeasuresTable.TotalChangeRequestss"
+            "metadata": "MeasuresTable.TotalChangeRequests"
           }
         }
       ],
