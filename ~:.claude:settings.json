@@ -1,0 +1,12 @@
+
+{
+  "env": {
+    "ANTHROPIC_AUTH_TOKEN": "sk-bf-c326591d-ff8a-4bc0-9f0b-eb53456d6bba",
+    "ANTHROPIC_BASE_URL": "https://ai.mantelgroup.com.au",
+    "ANTHROPIC_MODEL": "global-claude-sonnet-4.6-claude-code",
+    "ANTHROPIC_DEFAULT_OPUS_MODEL": "global-claude-opus-4.7-claude-code",
+    "ANTHROPIC_DEFAULT_SONNET_MODEL": "global-claude-sonnet-4.6-claude-code",
+    "ANTHROPIC_DEFAULT_HAIKU_MODEL": "global-claude-haiku-4.5-claude-code",
+    "CLAUDE_CODE_DISABLE_EXPERIMENTAL_BETAS": "1"
+  }
+}
