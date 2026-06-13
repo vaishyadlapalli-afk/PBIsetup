@@ -113,7 +113,7 @@
               },
               "queryRef": "fact_change_request.Service Interruption/Outage1",
               "nativeQueryRef": "Service Interruption/Outage1"
-            },
+            }
           ],
           "showAll": true
         }

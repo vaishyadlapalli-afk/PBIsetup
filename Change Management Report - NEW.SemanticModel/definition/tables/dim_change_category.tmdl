@@ -26,7 +26,7 @@ table dim_change_category
 		annotation SummarizationSetBy = Automatic
 
 	partition dim_change_category = m
-		mode: import
+		mode: directQuery
 		source =
 				let
 				    Source = Databricks.Catalogs("adb-7405617881191841.1.azuredatabricks.net", "/sql/1.0/warehouses/bd2d54335d56667d", []),
